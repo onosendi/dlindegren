@@ -6,7 +6,6 @@
 """
 from app.app_factory import create_app
 
-
 # uWSGI entry point.
 app = create_app()
 
