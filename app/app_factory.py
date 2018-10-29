@@ -20,6 +20,7 @@ def create_app(config=None):
     with app.app_context():
         configure_app(app, config)
         configure_extensions(app)
+        configure_blueprints(app)
     return app
 
 
@@ -42,3 +43,10 @@ def configure_extensions(app):
     from app.extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
+
+
+def configure_blueprints(app):
+    from app.views import static
+    from app.blog.views import blog
+    app.register_blueprint(static)
+    app.register_blueprint(blog, subdomain='blog')
