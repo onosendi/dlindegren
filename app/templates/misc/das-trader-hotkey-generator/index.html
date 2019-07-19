@@ -1,1 +1,30 @@
-Misc: hello world
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DAS Trader hotkey generator | dlindegren.com</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+  <h1>DAS Trader hotkey generator</h1>
+  <form method="post" novalidate>
+    {{ form.risk.label }}
+    {{ form.risk(placeholder=100) }}<br>
+    {{ form.route.label }}
+    {{ form.route(placeholder='SMRTL') }}<br>
+    {{ form.long_key.label }}
+    {{ form.long_key(placeholder='Ctrl+Shift') }}<br>
+    {{ form.short_key.label }}
+    {{ form.short_key(placeholder='Alt+Shift') }}<br>
+    {{ form.submit }}
+    {{ form.hidden_tag() }}
+  </form>
+  {% if hotkeys %}
+  {% for line in hotkeys %}
+  <p>{{ line }}</p>
+  {% endfor %}
+  {% endif %}
+</body>
+</html>
