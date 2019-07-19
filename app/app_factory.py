@@ -21,6 +21,7 @@ def create_app(config=None):
         configure_app(app, config)
         configure_extensions(app)
         configure_blueprints(app)
+        configure_jinja(app)
     return app
 
 
@@ -36,10 +37,6 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    """ Configure extensions.
-
-    :param app: Flask application instance
-    """
     from app.extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
@@ -52,3 +49,8 @@ def configure_blueprints(app):
     app.register_blueprint(static)
     app.register_blueprint(blog, subdomain='blog')
     app.register_blueprint(misc, subdomain='misc')
+
+
+def configure_jinja(app):
+    app.jinja_env.lstrip_blocks = True
+    app.jinja_env.trim_blocks = True
