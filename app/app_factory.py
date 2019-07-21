@@ -37,9 +37,7 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    from app.extensions import db, migrate
-    db.init_app(app)
-    migrate.init_app(app, db)
+    pass
 
 
 def configure_blueprints(app):

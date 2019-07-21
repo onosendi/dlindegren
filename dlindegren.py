@@ -7,7 +7,6 @@
 import os
 import config
 from app.app_factory import create_app
-from app.extensions import db
 
 # uWSGI entry point.
 if os.environ.get('FLASK_ENV') == 'production':
