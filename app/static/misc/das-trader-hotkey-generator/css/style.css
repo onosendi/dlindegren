@@ -1,0 +1,381 @@
+/**
+ * CSS Stylesheet for DAS Trader hotkey generator.
+ */
+
+:focus {
+  outline:none;
+}
+
+::-moz-focus-inner {
+  border:0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  
+  background: #f8f8f8;
+  box-sizing: border-box;
+  color: #4d4d4d;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+p {
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+a,
+a:visited,
+a:link {
+  color: #398440;
+  text-decoration: none;
+  border-bottom: 1px dotted #398440;
+}
+
+a:focus {
+  color: #398440;
+  outline: thin dotted;
+}
+
+a:hover {
+  color: #f5ad20;
+  border-bottom: 1px dotted #f5ad20;
+}
+
+a:active {
+  outline: 0 !important;
+}
+
+h2,
+h3,
+strong {
+  font-weight: bold;
+}
+
+.content h3 {
+  margin: 0 0 20px 0;
+
+  text-transform: uppercase;
+}
+
+.content ul {
+  margin: 0 0 20px 0;
+  padding: 0;
+
+  list-style-type: circle;
+}
+
+.content ul > li {
+  margin-left: 20px;
+
+  line-height: 1.5;
+}
+
+.content ol {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.content ol > li {
+  margin-left: 30px;
+
+  line-height: 1.5;
+}
+
+.content code,
+.content .highlight {
+  padding: 0 3px;
+
+  background: #f5ebd7;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.content dl {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+dt {
+  flex-basis: 20%;
+  line-height: 1.5;
+}
+
+dd {
+  flex-basis: 70%;
+  flex-grow: 1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.note {
+  margin: 0 0 20px 0;
+  padding: 20px 20px 0 20px;
+
+  background: #f8f8f8;
+  border: 1px solid #e3e3e3;
+}
+
+.note-title {
+  display: block;
+  margin-bottom: 10px;
+
+  font-weight: bold;
+}
+
+.warning {
+  margin-bottom: 20px;
+  padding: 16px 20px 0 20px;
+
+  background: #f5ebd7;
+  border: 1px solid #f5d79b;
+  color: #896c3f;
+}
+
+.container,
+.primary-header > hgroup {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container,
+  .primary-header > hgroup {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container,
+  .primary-header > hgroup {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container,
+  .primary-header > hgroup {
+    max-width: 960px;
+  }
+
+  .main-content,
+  .generator-content {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .generator-form .form-group {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .primary-header > hgroup {
+    max-width: 1140px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.main-content,
+.generator-content,
+.generator-form .form-group {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.primary-header {
+  margin-bottom: 30px;
+  padding: 20px 0;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.primary-header h1 {
+  margin-bottom: 5px;
+  margin-top: 0;
+
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2.6rem;
+  text-transform: uppercase;
+}
+
+.primary-header h1 > em {
+  font-style: normal;
+}
+
+.primary-header h1 > em:first-child {
+  color: #f5ad20;
+}
+
+.primary-header h1 > em:nth-child(2) {
+  color: #398440;
+}
+
+.primary-header .tagline {
+  margin: 0;
+
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.panel {
+  margin-bottom: 30px;
+  padding: 15px 20px 0 20px;
+
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+
+.panel-title {
+  margin: 10px 0 20px 0;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e3e3e3;
+  color: #f5ad20;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+
+  font-weight: bold;
+}
+
+input {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  display: block;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  width: 100%;
+
+  color: #4d4d4d;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #e3e3e3;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group input:focus {
+  color: #4d4d4d;
+  background-color: #fff;
+  border-color: #f5ad20;
+  outline: 0;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color: #e3e3e3;
+  opacity: 1;
+}
+
+.form-group input::-moz-input-placeholder {
+  color: #e3e3e3;
+  opacity: 1;
+}
+
+.form-group input:-ms-input-placeholder {
+  color: #e3e3e3;
+  opacity: 1;
+}
+
+.form-group input::-ms-input-placeholder {
+  color: #e3e3e3;
+  opacity: 1;
+}
+
+.form-group input::placeholder {
+  color: #e3e3e3;
+  opacity: 1;
+}
+
+.generator-form input[type="submit"] {
+  margin-bottom: 20px;
+  padding: 8px 15px;
+
+  background: #4780c6;
+  background: -moz-linear-gradient(top, #4780c6 0%, #4379ba 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #4780c6), color-stop(100%, #4379ba));
+  background: -webkit-linear-gradient(top, #4780c6 0%, #4379ba 100%);
+  background: -o-linear-gradient(top, #4780c6 0%, #4379ba 100%);
+  background: -ms-linear-gradient(top, #4780c6 0%, #4379ba 100%);
+  background: linear-gradient(to bottom, #4780c6 0%, #4379ba 100%);
+  border: 1px solid #3b6aa3;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4780c6', endColorstr='#4379ba', GradientType=0);
+}
+
+.generator-form input[type="submit"]:hover {
+  background: #4175b5;
+  background: -moz-linear-gradient(top, #4175b5 0%, #3c6ca7 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #4175b5), color-stop(100%, #3c6ca7));
+  background: -webkit-linear-gradient(top, #4175b5 0%, #3c6ca7 100%);
+  background: -o-linear-gradient(top, #4175b5 0%, #3c6ca7 100%);
+  background: -ms-linear-gradient(top, #4175b5 0%, #3c6ca7 100%);
+  background: linear-gradient(to bottom, #4175b5 0%, #3c6ca7 100%);
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4175b5', endColorstr='#3c6ca7', GradientType=0 );
+}
+
+.output-container {
+  padding-top: 20px;
+
+  border-top: 1px solid #e3e3e3;
+}
+
+.output-container pre {
+  margin: 0 0 20px 0;
+  max-height: 400px;
+  overflow: auto;
+  padding: 10px;
+  
+  background: #f8f8f8;
+  border: 1px solid #e3e3e3;
+  line-height: 1.5;
+}
+
+.keyboard {
+  float: right;
+  max-width: 24%;
+  margin: 0 0 20px 20px;
+
+  border: 1px solid #000;
+}

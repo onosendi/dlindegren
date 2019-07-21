@@ -3,8 +3,8 @@ from wtforms import SubmitField, StringField
 
 
 class DasTraderHotkeyGeneratorForm(FlaskForm):
-    risk = StringField('Risk')
+    risk = StringField('Risk (dollars)')
     route = StringField('Route')
     long_key = StringField('Long key(s)')
     short_key = StringField('Short key(s)')
-    submit = SubmitField('Generator Hotkeys')
+    submit = SubmitField('Generate Hotkeys')

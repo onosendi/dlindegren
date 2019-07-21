@@ -3,28 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generate hotkeys for DAS Trader based on your criteria">
+  <meta name="author" content="Daniel Lindegren">
   <title>DAS Trader hotkey generator | dlindegren.com</title>
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Fjalla+One|Ubuntu&display=swap">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='misc/das-trader-hotkey-generator/css/style.css') }}">
 </head>
 <body>
-  <h1>DAS Trader hotkey generator</h1>
-  <form method="post" novalidate>
-    {{ form.risk.label }}
-    {{ form.risk(placeholder=100) }}<br>
-    {{ form.route.label }}
-    {{ form.route(placeholder='SMRTL') }}<br>
-    {{ form.long_key.label }}
-    {{ form.long_key(placeholder='Ctrl+Shift') }}<br>
-    {{ form.short_key.label }}
-    {{ form.short_key(placeholder='Alt+Shift') }}<br>
-    {{ form.submit }}
-    {{ form.hidden_tag() }}
-  </form>
-  {% if hotkeys %}
-  {% for line in hotkeys %}
-  <p>{{ line }}</p>
-  {% endfor %}
-  {% endif %}
+<header class="primary-header">
+  <hgroup>
+    <h1><em>DAS</em> <em>Trader</em> hotkey generator</h1>
+    <h2 class="tagline">for onosendi's keyboard</h2>
+  </hgroup>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="main-content content">
+      <div class="panel">
+        <img class="keyboard" src="{{ url_for('static', filename='misc/das-trader-hotkey-generator/img/keyboard.jpg') }}" alt="onosendi's keyboard used for position sizing in DAS Trader">
+        <p>If you came across this and have no idea what it is, <a href="https://forums.bearbulltraders.com/topic/518-position-sizing">read the article</a> I wrote on position sizing, and how I manage my risk.</p>
+        <p>When I change my risk, it can be tedious entering new share values for every key. I wrote this generator to solve this problem, and I thought I would share it with anyone else that was interested.<p>
+        <p>If you are interested in the CLI version, it can be found <a href="https://gist.github.com/onosendi/11ae4c274e87425b02eb676928547960">here</a>.</p>
+      </div><!--//END .panel-->
+      <div class="panel">
+        <h2 class="panel-title">Instructions</h2>
+        <p><strong>Overview of what we will be doing:</strong></p>
+        <ul>
+          <li>Backup your current hotkey file</li>
+          <li>Use this generator to generate hotkeys</li>
+          <li>Paste the generated hotkeys into a new hotkey file</li>
+          <li>Load the new hotkey file into DAS Trader</li>
+        </ul>
+        <h3>Backup</h3>
+        <p>Before we go messing with our hotkey file, we should back it up in case something goes wrong. Navigate to your DAS install directory, which is <span class="highlight">C:\DAS Trader Pro</span> by default.</p>
+        <p><strong>There are a few files in there named hotkey:</strong></p>
+        <dl>
+          <dt>hotkey</dt>
+          <dd>this is an XML document</dd>
+          <dt>HotKey</dt>
+          <dd>this is an HTML document</dd>
+          <dt><span class="highlight">Hotkey</span></dt>
+          <dd><span class="highlight">this is an HTK document, the one we want</span></dd>
+        </dl>
+        <p>Once you have located this file:</p>
+        <ol>
+          <li>Copy the file: right click and select "copy"</li>
+          <li>Paste the file: press Ctrl+V</li>
+          <li>Rename the newly created file "Hotkey - Copy" to "MyHotkeys"</li>
+        </ol>
+        <div class="note">
+          <span class="note-title">Note</span>
+          <p>We are going to be adding the new hotkeys to "MyHotkeys". The original "Hotkey" file you copied from will be your backup.</p>
+        </div>
+        <h3>Generating Hotkeys</h3>
+        <p>Use the form on this page to generate your hotkeys, then copy the output to your clipboard.</p>
+        <h3>Edit Your Hotkey File</h3>
+        <p>Now we are going to paste the hotkeys we generated into your newly created "MyHotkeys" file. To do this, we need to open the file up in an editor:</p>
+        <ul>
+          <li>Right click "Myhotkeys" and select "Open with...", then select "Notepad"</li>
+          <li>Paste the lines that you generated at the bottom of the file, then save it</li>
+        </ul>
+        <h3>Load Your Hotkeys Into DAS</h3>
+        <p>Now it is time to load your new hotkey file into DAS Trader:</p>
+        <ol>
+          <li>Open DAS</li>
+          <li>From the menu bar, open your hotkey configuration by selecting "Setup", then "Hotkey"</li>
+          <li>Click "Browse" at the bottom of the window, then open your newly created hotkey file "MyHotkeys"</li>
+          <li>Click "Ok", and you are finished!</li>
+        </ol>
+      </div><!--//END .panel-->
+    </div><!--//END .main-content-->
+    <div class="generator-content">
+      <div class="panel">
+        <h2 class="panel-title">Generator</h2>
+        <form class="generator-form" method="post" novalidate>
+          <div class="row">
+            <div class="form-group">
+              {{ form.risk.label }}
+              {{ form.risk(placeholder=100) }}
+            </div>
+            <div class="form-group">
+              {{ form.route.label }}
+              {{ form.route(placeholder="SMRTL") }}
+            </div>
+          </div><!--//END .row-->
+          <div class="row">
+            <div class="form-group">
+              {{ form.long_key.label }}
+              {{ form.long_key(placeholder="Ctrl+Shift") }}
+            </div>
+            <div class="form-group">
+              {{ form.short_key.label }}
+              {{ form.short_key(placeholder="Alt+Shift") }}
+            </div>
+          </div><!--//END .row-->
+          {{ form.submit }}
+          {{ form.hidden_tag() }}
+        </form>
+        {% if hotkeys %}
+        <div class="output-container">
+          <div class="warning">
+            <p>I accept no responsibility for misconfigured hotkey files. Always test your new configurations in a simulator before using them live.</p>
+          </div>
+          <pre class="output">{% for line in hotkeys %}{{ line }}<br>{% endfor %}</pre>
+        </div><!--//END .output-container-->
+        {% endif %}
+      </div><!--//END .panel-->
+    </div><!--//END .generator-content-->
+  </div><!--/END .row-->
+</div><!--//END .container-->
 </body>
 </html>
