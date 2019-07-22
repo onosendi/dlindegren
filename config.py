@@ -1,9 +1,9 @@
-"""
+'''
     config
     ~~~~~~
 
     Flask configuration file.
-"""
+'''
 import os
 from dotenv import load_dotenv
 
@@ -12,13 +12,13 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 
 class BaseConfig:
-    """ Base configurations.
+    ''' Base configurations.
 
     These are the base configurations that will be loaded, unless otherwise
     overridden.
 
     ..note: Never load this configuration directly.
-    """
+    '''
     DEBUG = False
     TESTING = False
     SERVER_NAME = 'dlindegren.local:5000'
@@ -29,10 +29,10 @@ class BaseConfig:
 
 
 class DefaultConfig(BaseConfig):
-    """ Default configurations. """
+    ''' Default configurations. '''
     DEBUG = True
 
 
 class ProductionConfig(BaseConfig):
-    """ Production configurations. """
+    ''' Production configurations. '''
     SERVER_NAME = 'dlindegren.com'

@@ -1,3 +1,9 @@
+'''
+    app.views
+    ~~~~~~~~~
+
+    End points for static pages.
+'''
 from flask import Blueprint, render_template
 
 static = Blueprint('static', __name__)

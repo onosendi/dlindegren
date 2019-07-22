@@ -1,3 +1,9 @@
+'''
+    app.misc.forms
+    ~~~~~~~~~~~~~~
+
+    Forms for miscellaneous applications.
+'''
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField
 
