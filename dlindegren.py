@@ -1,12 +1,13 @@
-"""
+'''
     dlindegren
     ~~~~~~~~~~
 
     uWSGI entry point.
-"""
+'''
 import os
 import config
 from app.app_factory import create_app
+from app.extensions import db
 
 # uWSGI entry point.
 if os.environ.get('FLASK_ENV') == 'production':
@@ -17,7 +18,7 @@ else:
 
 @app.shell_context_processor
 def make_shell_context():
-    """ For `flask shell` - enables shell defaults. """
+    ''' For `flask shell` - enables shell defaults. '''
     return {
         'app': app,
         'db': db,
