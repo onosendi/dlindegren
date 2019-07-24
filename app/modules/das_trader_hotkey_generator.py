@@ -35,12 +35,12 @@ key_map = {
 }
 
 
-def generate_hotkeys(risk, route, sc_long_key, sc_short_key):
-    # Make sure :param:`risk` is an integer.
+def generate_hotkeys(risk=None, route=None, sc_long_key=None,
+                     sc_short_key=None):
     if not isinstance(risk, int):
         try:
             risk = int(risk)
-        except ValueError:
+        except (ValueError, TypeError):
             risk = 100
     if not route:
         route = 'SMRTL'
@@ -55,10 +55,12 @@ def generate_hotkeys(risk, route, sc_long_key, sc_short_key):
             shortcut_key = sc_long_key
             side_text = 'Long'
             l2 = 'Ask+'
+            side_send = 'BUY'
         else:
             shortcut_key = sc_short_key
             side_text = 'Short'
             l2 = 'Bid-'
+            side_send = 'SELL'
         for k, v in key_map.items():
             dollar = k / 100
             string = '{}+{}:'.format(shortcut_key, v)
@@ -66,7 +68,7 @@ def generate_hotkeys(risk, route, sc_long_key, sc_short_key):
             string += 'ROUTE={};'.format(route)
             string += 'Price={}0.05;'.format(l2)
             string += 'Share={};'.format(round(risk / dollar))
-            string += 'TIF=DAY+;SELL=Send'
+            string += 'TIF=DAY+;{}=Send'.format(side_send)
             result.append(string)
         i += 1
     return result
