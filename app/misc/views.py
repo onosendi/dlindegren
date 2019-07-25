@@ -7,7 +7,7 @@
 from flask import Blueprint, render_template, request
 from app.misc.forms import DasTraderHotkeyGeneratorForm
 from app.modules.das_trader_hotkey_generator import generate_hotkeys
-from app.misc.models.das_trader import DasTrader
+from app.misc.models.das_trader import MiscDasTrader
 
 misc = Blueprint('misc', __name__)
 
@@ -22,7 +22,7 @@ def das_trader_hotkey_generator():
             route=form.route.data,
             sc_long_key=form.long_key.data,
             sc_short_key=form.short_key.data)
-        dt = DasTrader(ip_address=request.remote_addr)
+        dt = MiscDasTrader(ip_address=request.remote_addr)
         dt.commit()
     return render_template('misc/das-trader-hotkey-generator/index.html',
                            form=form, hotkeys=hotkeys)
