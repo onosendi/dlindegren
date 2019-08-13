@@ -35,4 +35,4 @@ class DefaultConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     ''' Production configurations. '''
-    SERVER_NAME = 'dlindegren.com'
+    SERVER_NAME = 'www.dlindegren.com'
