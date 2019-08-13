@@ -45,7 +45,7 @@ def configure_blueprints(app):
     from app.views import static
     from app.blog.views import blog
     from app.misc.views import misc
-    app.register_blueprint(static)
+    app.register_blueprint(static, subdomain='www')
     app.register_blueprint(blog, subdomain='blog')
     app.register_blueprint(misc, subdomain='misc')
 
