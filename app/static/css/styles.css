@@ -69,31 +69,31 @@ article {
   text-align: center;
 }
 
-h1 {
+article h1 {
   visibility: hidden;
   display: none;
 }
 
-p {
+article p {
   font: 26px/1.5 'Roboto Mono', monospace;
   margin-bottom: 20px;
 }
 
-p em {
+article p em {
   font: 40px/1.5 'Roboto Slab', serif;
 }
 
-.social-links {
+article .social-links {
   display: flex;
   justify-content: center;
   list-style: none;
 }
 
-.social-links li {
+article .social-links li {
   margin: 0 5px;
 }
 
-.social-links a {
+article .social-links a {
   align-items: center;
   background: #444;
   border-bottom: none;
@@ -117,12 +117,12 @@ p em {
   width: 30px;
 }
 
-.social-links a:hover, .social-links a:focus, .social-links a:active {
+article .social-links a:hover, article .social-links a:focus, article .social-links a:active {
   background: #fb4934;
   outline: none;
 }
 
-.social-links a > .fa {
+article .social-links a > .fa {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -135,9 +135,9 @@ p em {
   transition: transform 0.15s ease-out;
 }
 
-.social-links a:hover > .fa,
-.social-links a:focus > .fa,
-.social-links a:active > .fa {
+article .social-links a:hover > .fa,
+article .social-links a:focus > .fa,
+article .social-links a:active > .fa {
   -webkit-transform: translateY(-3px);
   -moz-transform: translateY(-3px);
   -ms-transform: translateY(-3px);

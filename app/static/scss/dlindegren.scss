@@ -18,66 +18,67 @@ body {
   justify-content: center;
 }
 
+
 article {
   max-width: 750px;
   padding: 0 15px;
   text-align: center;
-}
 
-h1 {
-  visibility: hidden;
-  display: none;
-}
-
-p {
-  font: 26px/1.5 'Roboto Mono', monospace;
-  margin-bottom: 20px;
-}
-
-p em {
-  font: 40px/1.5 'Roboto Slab', serif;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  list-style: none;
+  h1 {
+    visibility: hidden;
+    display: none;
+  }
   
-  li {
-    margin: 0 5px;
+  p {
+    font: 26px/1.5 'Roboto Mono', monospace;
+    margin-bottom: 20px;
   }
 
-  a {
-    align-items: center;
-    background: $black;
-    border-bottom: none;
-    border-radius: 50%;
-    color: $white;
+  p em {
+    font: 40px/1.5 'Roboto Slab', serif;
+  }
+
+  .social-links {
     display: flex;
-    height: 30px;
     justify-content: center;
-    margin-top: 20px;
-    text-decoration: none;
-    @include prefix(transform, perspective(1px) translateZ(0));
-    @include prefix(transition, background 0.15s ease-in);
-    width: 30px;
-    
-    &:hover,
-    &:focus,
-    &:active {
-      background: $red;
-      outline: none;
-    }
-    
-    & > .fa {
-      @include prefix(transform, translateZ(0));
-      @include prefix(transition, transform 0.15s ease-out);
+    list-style: none;
+      
+    li {
+      margin: 0 5px;
     }
 
-    &:hover > .fa,
-    &:focus > .fa,
-    &:active > .fa {
-      @include prefix(transform, translateY(-3px));
+    a {
+      align-items: center;
+      background: $black;
+      border-bottom: none;
+      border-radius: 50%;
+      color: $white;
+      display: flex;
+      height: 30px;
+      justify-content: center;
+      margin-top: 20px;
+      text-decoration: none;
+      @include prefix(transform, perspective(1px) translateZ(0));
+      @include prefix(transition, background 0.15s ease-in);
+      width: 30px;
+      
+      &:hover,
+      &:focus,
+      &:active {
+        background: $red;
+        outline: none;
+      }
+      
+      & > .fa {
+        @include prefix(transform, translateZ(0));
+        @include prefix(transition, transform 0.15s ease-out);
+      }
+
+      &:hover > .fa,
+      &:focus > .fa,
+      &:active > .fa {
+        @include prefix(transform, translateY(-3px));
+      }
     }
   }
 }
