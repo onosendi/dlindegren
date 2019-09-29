@@ -1,16 +1,6 @@
 @import 'reset';
-
-/* Mixins */
-@mixin transition($property) {
-  -webkit-transition: $property;
-  -ms-transition: $property;
-  transition: $property;
-}
-
-/* Colors */
-$white: #fff;
-$black: #444;
-$red: #fb4934;
+@import 'mixins';
+@import 'colors';
 
 html, body {
   height: 100%;
@@ -68,7 +58,7 @@ p em {
     justify-content: center;
     margin-top: 20px;
     text-decoration: none;
-    @include transition(background 0.15s ease-in);
+    @include prefix(transition, "background 0.15s ease-in");
     width: 30px;
   }
 
