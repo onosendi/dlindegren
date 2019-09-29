@@ -1,16 +1,6 @@
 @import 'reset';
-
-/* Mixins */
-@mixin transition($property) {
-  -webkit-transition: $property;
-  -ms-transition: $property;
-  transition: $property;
-}
-
-/* Colors */
-$white: #fff;
-$black: #444;
-$red: #fb4934;
+@import 'mixins';
+@import 'colors';
 
 html, body {
   height: 100%;
@@ -68,12 +58,26 @@ p em {
     justify-content: center;
     margin-top: 20px;
     text-decoration: none;
-    @include transition(background 0.15s ease-in);
+    @include prefix(transform, perspective(1px) translateZ(0));
+    @include prefix(transition, background 0.15s ease-in);
     width: 30px;
-  }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $red;
+      outline: none;
+    }
+    
+    & > .fa {
+      @include prefix(transform, translateZ(0));
+      @include prefix(transition, transform 0.15s ease-out);
+    }
 
-  a:hover,
-  a:focus {
-    background: $red;
+    &:hover > .fa,
+    &:focus > .fa,
+    &:active > .fa {
+      @include prefix(transform, translateY(-3px));
+    }
   }
 }
