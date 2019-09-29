@@ -104,6 +104,11 @@ p em {
   justify-content: center;
   margin-top: 20px;
   text-decoration: none;
+  -webkit-transform: perspective(1px) translateZ(0);
+  -moz-transform: perspective(1px) translateZ(0);
+  -ms-transform: perspective(1px) translateZ(0);
+  -o-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
   -webkit-transition: background 0.15s ease-in;
   -moz-transition: background 0.15s ease-in;
   -ms-transition: background 0.15s ease-in;
@@ -112,7 +117,30 @@ p em {
   width: 30px;
 }
 
-.social-links a:hover,
-.social-links a:focus {
+.social-links a:hover, .social-links a:focus, .social-links a:active {
   background: #fb4934;
+  outline: none;
+}
+
+.social-links a > .fa {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: transform 0.15s ease-out;
+  -moz-transition: transform 0.15s ease-out;
+  -ms-transition: transform 0.15s ease-out;
+  -o-transition: transform 0.15s ease-out;
+  transition: transform 0.15s ease-out;
+}
+
+.social-links a:hover > .fa,
+.social-links a:focus > .fa,
+.social-links a:active > .fa {
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
 }
