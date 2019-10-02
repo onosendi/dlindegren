@@ -36,9 +36,10 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    from app.extensions import db, migrate
+    from app.extensions import db, migrate, misaka
     db.init_app(app)
     migrate.init_app(app, db)
+    misaka.init_app(app)
 
 
 def configure_blueprints(app):
