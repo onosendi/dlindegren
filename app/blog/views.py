@@ -14,6 +14,6 @@ def index():
     return render_template('blog/index.html')
 
 
-@blog.route('/<article>')
+@blog.route('/article/<article>')
 def article(article):
     return '{}'.format(article)
