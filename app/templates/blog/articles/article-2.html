@@ -1,0 +1,6 @@
+<p>{{ article.article_name }}</p>
+<ul>
+  {% for category in article.categories.all() %}
+  <li>{{ category.category_name }}</li>
+  {% endfor %}
+</ul>
