@@ -10,10 +10,5 @@ blog = Blueprint('blog', __name__)
 
 
 @blog.route('/')
-def index():
-    return render_template('blog/index.html')
-
-
-@blog.route('/article/<article>')
-def article(article):
-    return '{}'.format(article)
+def home():
+    return render_template('blog/home.html')
