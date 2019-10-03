@@ -4,6 +4,7 @@
 
     End points for admin.
 '''
+from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
@@ -16,7 +17,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin.route('/')
 @login_required
 def home():
-    return render_template('admin/home.html')
+    return render_template('admin/index.html')
 
 
 @admin.route('/login', methods=['GET', 'POST'])

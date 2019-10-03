@@ -13,10 +13,11 @@ blog = Blueprint('blog', __name__)
 @blog.route('/')
 def home():
     articles = BlogArticle.query.order_by(BlogArticle.created.desc()).all()
-    return render_template('blog/home.html', articles=articles)
+    return render_template('blog/index.html', articles=articles)
 
 
 @blog.route('/article/<file_name>')
 def article(file_name):
     article = BlogArticle.query.filter_by(file_name=file_name).first_or_404()
-    return render_template('/blog/articles/{}.html'.format(file_name))
+    return render_template('/blog/articles/{}.html'.format(file_name),
+                           article=article)
