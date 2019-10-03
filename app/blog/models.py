@@ -14,8 +14,9 @@ article_category_assoc = db.Table(
 
 
 class BlogArticle(db.Model, BaseModel, BaseControl):
-    article_name = db.Column(db.String(255), nullable=False, unique=True,
-                             index=True)
+    article_name = db.Column(db.String(255), nullable=False, unique=True)
+    file_name = db.Column(db.String(255), nullable=False, unique=True,
+                          index=True)
     categories = db.relationship('BlogCategory',
                                  secondary=article_category_assoc,
                                  backref=db.backref('articles',
