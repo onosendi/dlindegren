@@ -16,7 +16,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 @admin.route('/')
 @login_required
-def home():
+def index():
     return render_template('admin/index.html')
 
 

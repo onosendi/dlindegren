@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block page_title %}{% endblock %} | dlindegren.com</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono%7CRoboto+Slab&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block content %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+</html>

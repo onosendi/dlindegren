@@ -11,7 +11,7 @@ blog = Blueprint('blog', __name__)
 
 
 @blog.route('/')
-def home():
+def index():
     articles = BlogArticle.query.order_by(BlogArticle.created.desc()).all()
     return render_template('blog/index.html', articles=articles)
 
