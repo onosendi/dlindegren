@@ -5,6 +5,7 @@
     End points for blog.
 '''
 from flask import Blueprint, render_template
+from app.blog.models import BlogArticle
 
 blog = Blueprint('blog', __name__)
 
