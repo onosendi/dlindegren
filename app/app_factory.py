@@ -27,19 +27,23 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    from app.extensions import db, migrate, misaka
+    from app.extensions import db, migrate, login, misaka
     db.init_app(app)
     migrate.init_app(app, db)
+    login.init_app(app)
+    login.login_view = 'admin.login'
     misaka.init_app(app)
 
 
 def configure_blueprints(app):
     from app.errors.views import errors
     from app.views import static
+    from app.admin.views import admin
     from app.blog.views import blog
     from app.misc.views import misc
     app.register_blueprint(errors)
     app.register_blueprint(static)
+    app.register_blueprint(admin)
     app.register_blueprint(blog, subdomain='blog')
     app.register_blueprint(misc, subdomain='misc')
 
