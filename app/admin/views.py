@@ -6,11 +6,17 @@
 '''
 from flask import Blueprint, render_template, redirect, url_for, flash
 from sqlalchemy import func
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from app.admin.models import User
 from app.admin.forms import LoginForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
+
+
+@admin.route('/')
+@login_required
+def home():
+    return render_template('admin/home.html')
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -46,8 +52,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
-
-
-@admin.route('/')
-def home():
-    return render_template('admin/home.html')
