@@ -6,7 +6,7 @@
 '''
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
-from app.models.blog import BlogArticle
+from app.blog.models import BlogArticle
 
 blog = Blueprint('blog', __name__)
 

@@ -36,10 +36,10 @@ def configure_extensions(app):
 
 
 def configure_blueprints(app):
-    from app.views.errors import errors
-    from app.views.frontend import frontend
-    from app.views.admin import admin
-    from app.views.blog import blog
+    from app.errors.views import errors
+    from app.frontend.views import frontend
+    from app.admin.views import admin
+    from app.blog.views import blog
     from app.misc.views import misc
     app.register_blueprint(errors)
     app.register_blueprint(frontend)

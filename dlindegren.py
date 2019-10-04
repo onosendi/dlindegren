@@ -8,8 +8,8 @@ import os
 import config
 from app.app_factory import create_app
 from app.extensions import db
-from app.models.admin import AdminUser, register_user
-from app.models.blog import BlogArticle, BlogCategory
+from app.admin.models import AdminUser, register_user
+from app.blog.models import BlogArticle, BlogCategory
 
 # uWSGI entry point.
 if os.environ.get('FLASK_ENV') == 'production':
