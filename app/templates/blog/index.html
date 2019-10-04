@@ -1,6 +1,11 @@
+{% extends "_base.html" %}
+{% block page_title %}Daniel Lindegren's blog{% endblock %}
+{% block page_description %}Daniel Lindegren's personal blog{% endblock %}
+{% block content %}
 {% for article in articles %}
 <p>
   {{ article.article_name }}
   <a href="{{ url_for('blog.article', file_name='') }}{{ article.file_name }}">Test</a><br>
 </p>
 {% endfor %}
+{% endblock %}

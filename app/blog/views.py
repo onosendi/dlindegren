@@ -16,7 +16,7 @@ def index():
     return render_template('blog/index.html', articles=articles)
 
 
-@blog.route('/article/<file_name>')
+@blog.route('/article/<string:file_name>')
 def article(file_name):
     article = BlogArticle.query.filter_by(file_name=file_name).first_or_404()
     return render_template('/blog/articles/{}.html'.format(file_name),

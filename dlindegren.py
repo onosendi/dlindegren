@@ -8,7 +8,7 @@ import os
 import config
 from app.app_factory import create_app
 from app.extensions import db
-from app.admin import models as Admin
+from app.admin.models import AdminUser, register_user
 from app.blog.models import BlogArticle, BlogCategory
 
 # uWSGI entry point.
@@ -23,6 +23,7 @@ def make_shell_context():
     ''' For `flask shell` - enables shell defaults. '''
     return {'app': app,
             'db': db,
-            'Admin': Admin,
+            'AdminUser': AdminUser,
+            'register_user': register_user,
             'BlogArticle': BlogArticle,
             'BlogCategory': BlogCategory}
