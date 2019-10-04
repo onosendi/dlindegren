@@ -11,4 +11,4 @@ static_view = Blueprint('static_view', __name__)
 
 @static_view.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('static_view/index.html')
