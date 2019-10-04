@@ -10,8 +10,7 @@ from app.extensions import db, login
 from app.base_models import BaseModel, BaseControl
 
 
-class User(UserMixin, db.Model, BaseModel, BaseControl):
-    __tablename__ = 'admin_user'
+class AdminUser(UserMixin, db.Model, BaseModel, BaseControl):
     username = db.Column(db.String(35), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
@@ -27,7 +26,7 @@ class User(UserMixin, db.Model, BaseModel, BaseControl):
 
 
 def register_user(username, email, password):
-    user = User(username=username, email=email)
+    user = AdminUser(username=username, email=email)
     user.set_password(password)
     user.commit()
     return user
@@ -36,4 +35,4 @@ def register_user(username, email, password):
 @login.user_loader
 def load_user(id):
     ''' For :mod:flask_login. '''
-    return User.query.get(int(id))
+    return AdminUser.query.get(int(id))
