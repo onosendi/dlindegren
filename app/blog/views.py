@@ -22,6 +22,6 @@ def article(file_name):
     article = BlogArticle.query.filter_by(file_name=file_name).first_or_404()
     try:
         return render_template('/blog/articles/{}.html'.format(file_name),
-                           article=article)
+                               article=article)
     except TemplateNotFound:
         abort(404)
