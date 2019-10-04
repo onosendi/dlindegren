@@ -7,7 +7,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app.extensions import db, login
-from app.mixins import BaseModel, BaseControl
+from app.models.mixins import BaseModel, BaseControl
 
 
 class AdminUser(UserMixin, db.Model, BaseModel, BaseControl):

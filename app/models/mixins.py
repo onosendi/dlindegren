@@ -1,6 +1,6 @@
 '''
-    app.mixins
-    ~~~~~~~~~~
+    app.models.mixins
+    ~~~~~~~~~~~~~~~~~
 
     Mixins for SQLAlchemy.
 '''

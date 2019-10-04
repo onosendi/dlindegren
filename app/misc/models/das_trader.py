@@ -4,7 +4,7 @@
 '''
 from datetime import datetime
 from app.extensions import db
-from app.mixins import BaseControl
+from app.models.mixins import BaseControl
 
 
 class MiscDasTrader(BaseControl, db.Model):
