@@ -37,12 +37,12 @@ def configure_extensions(app):
 
 def configure_blueprints(app):
     from app.views.errors import errors
-    from app.views.static_view import static_view
+    from app.views.frontend import frontend
     from app.views.admin import admin
     from app.views.blog import blog
     from app.misc.views import misc
     app.register_blueprint(errors)
-    app.register_blueprint(static_view)
+    app.register_blueprint(frontend)
     app.register_blueprint(admin)
     app.register_blueprint(blog, subdomain='blog')
     app.register_blueprint(misc, subdomain='misc')
