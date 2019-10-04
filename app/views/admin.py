@@ -8,8 +8,8 @@ from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
-from app.admin.models import AdminUser, register_user
-from app.admin.forms import LoginForm, FirstTimeForm
+from app.models.admin import AdminUser, register_user
+from app.forms.admin import LoginForm, FirstTimeForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
