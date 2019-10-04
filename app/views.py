@@ -6,9 +6,9 @@
 '''
 from flask import Blueprint, render_template
 
-static = Blueprint('static', __name__)
+static_view = Blueprint('static_view', __name__)
 
 
-@static.route('/')
+@static_view.route('/')
 def index():
     return render_template('index.html')
