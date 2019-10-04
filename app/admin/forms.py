@@ -34,7 +34,7 @@ class FirstTimeForm(FlaskForm):
     password2 = PasswordField(
         'Repeat password', validators=[DataRequired(),
                                        EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Create Admin')
 
     def validate_username(self, username):
         # Make sure ``username``:
