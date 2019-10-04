@@ -8,7 +8,7 @@ from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
-from app.admin.models import User
+from app.admin.models import AdminUser
 from app.admin.forms import LoginForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
@@ -26,10 +26,10 @@ def login():
         return redirect(url_for('admin.home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user_by_email = User.query.filter(
-            func.lower(User.email) == func.lower(form.email.data)).first()
-        user_by_username = User.query.filter(
-            func.lower(User.username) == func.lower(form.email.data)).first()
+        user_by_email = AdminUser.query.filter(
+            func.lower(AdminUser.email) == func.lower(form.email.data)).first()
+        user_by_username = AdminUser.query.filter(
+            func.lower(AdminUser.username) == func.lower(form.email.data)).first()
         user = user_by_email if user_by_email else user_by_username
         if (user is None or not user.check_password(form.password.data) or not
                 user.active):
