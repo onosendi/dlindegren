@@ -6,6 +6,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono%7CRoboto+Slab&display=swap">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% with flashed_messages = get_flashed_messages() %}
+  {% if flashed_messages %}
+  <ul>
+    {% for message in flashed_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endwith %}
 {% block content %}
 {% endblock %}
 {% block script %}

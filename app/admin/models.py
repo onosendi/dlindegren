@@ -35,4 +35,4 @@ def register_user(username, email, password):
 @login.user_loader
 def load_user(id):
     ''' For :mod:flask_login. '''
-    return User.query.get(int(id))
+    return AdminUser.query.get(int(id))
