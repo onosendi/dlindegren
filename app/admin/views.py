@@ -8,8 +8,8 @@ from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
-from app.admin.models import AdminUser
-from app.admin.forms import LoginForm
+from app.admin.models import AdminUser, register_user
+from app.admin.forms import LoginForm, FirstTimeForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -42,6 +42,19 @@ def login():
             next_page = url_for('admin.index')
         return redirect(next_page)
     return render_template('admin/login.html', form=form)
+
+
+@admin.route('first-time', methods=['GET', 'POST'])
+def first_time():
+    if AdminUser.query.count() > 0:
+        return redirect(url_for('admin.login'))
+    form = FirstTimeForm()
+    if form.validate_on_submit():
+        user = register_user(form.username.data, form.email.data,
+                             form.password.data)
+        login_user(user)
+        return redirect(url_for('admin.index'))
+    return render_template('admin/first-time.html', form=form)
 
 
 @admin.route('/logout')
