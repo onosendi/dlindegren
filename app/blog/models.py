@@ -3,7 +3,7 @@
     ~~~~~~~~~~~~~~~
 '''
 from app.extensions import db
-from app.base_models import BaseModel, BaseControl
+from app.mixins import BaseModel, BaseControl
 
 
 article_category_assoc = db.Table(
