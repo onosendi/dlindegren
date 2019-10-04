@@ -37,7 +37,7 @@ def configure_extensions(app):
 
 def configure_blueprints(app):
     from app.views.errors import errors
-    from app.views.static import static_view
+    from app.views.static_view import static_view
     from app.views.admin import admin
     from app.views.blog import blog
     from app.misc.views import misc
