@@ -1,14 +1,12 @@
 '''
     app.admin.views
     ~~~~~~~~~~~~~~~
-
-    End points for admin.
 '''
 import re
-import urllib.parse
 from werkzeug.urls import url_parse
 from flask import (Blueprint, render_template, redirect, url_for, flash,
-                   request, jsonify, abort)
+                   request)
+from flask.views import MethodView
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
 from app.admin.models import AdminUser, register_user
@@ -18,33 +16,50 @@ from app.admin.forms import LoginForm, FirstTimeForm
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 
-@admin.route('/blog')
-@login_required
-def blog():
-    articles = BlogArticle.query.filter_by(active=True).\
-        order_by(BlogArticle.created.desc()).all()
-    return render_template('admin/blog.html', articles=articles)
+class Blog(MethodView):
 
+    decorators = [login_required]
 
-@admin.route('/blog/<int:article_id>', methods=['POST', 'PUT', 'DELETE'])
-def blog_control(article_id):
-    article = BlogArticle.query.filter_by(id=article_id).first()
-    if not article:
-        abort(404)
-    article_dict = {
-        'article_id': article.id,
-        'article_name': article.article_name,
-        'file_name': article.file_name}
-    if request.method == 'PUT':
+    def get(self):
+        articles = BlogArticle.query.filter_by(active=True).\
+            order_by(BlogArticle.created.desc()).all()
+        return render_template('admin/blog.html', articles=articles)
+
+    def post(self):
         article_name = request.json.get('article_name')
-        file_name = re.sub(r'\W+', '-', article_name)
+        file_name = self._get_file_name(article_name)
+        article = BlogArticle(article_name=article_name, file_name=file_name)
+        article = article.commit()
+        return self._jsonify(article)
+
+    def put(self):
+        article = self._get_article()
+        article_name = request.json.get('article_name')
+        file_name = self._file_name(article_name) 
         article.article_name = article_name
         article.file_name = file_name
         article.commit()
-    if request.method == 'DELETE':
+        return self._jsonify(article)
+
+    def delete(self):
+        article = self._get_article()
         article.delete()
         article.commit()
-    return jsonify(article_dict)
+        return self._jsonify(article)
+
+    def _get_file_name(self, article_name):
+        return re.sub('\W+', '-', article_name)
+
+
+    def _get_article(self):
+        article_id = request.args.get('article_id') or 0
+        return BlogArticle.query.filter_by(id=article_id).first()
+
+    def _jsonify(self, article):
+        return {
+            'article_id': article.id,
+            'article_name': article.article_name,
+            'article_file_name': article.file_name}
 
 
 @admin.route('/')
