@@ -35,7 +35,7 @@ class Blog(MethodView):
     def put(self):
         article = self._get_article()
         article_name = request.json.get('article_name')
-        file_name = self._file_name(article_name) 
+        file_name = self._file_name(article_name)
         article.article_name = article_name
         article.file_name = file_name
         article.commit()
@@ -48,8 +48,7 @@ class Blog(MethodView):
         return self._jsonify(article)
 
     def _get_file_name(self, article_name):
-        return re.sub('\W+', '-', article_name)
-
+        return re.sub(r'\W+', '-', article_name.lower())
 
     def _get_article(self):
         article_id = request.args.get('article_id') or 0
