@@ -1,6 +1,8 @@
 (function() {
   "use strict";
 
+// Show an element
+var show = function (elem) {
   let send = function(url, method) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -13,7 +15,7 @@
     xhr.open(method, url);
     xhr.send();
   };
-
+  
   let articleItems = document.querySelectorAll('.article-item');
   for (let i = 0; i < articleItems.length; i++) {
     let el = articleItems[i],

@@ -11,5 +11,4 @@ frontend = Blueprint('static_view', __name__)
 
 @frontend.route('/')
 def index():
-    flash('testing')
     return render_template('frontend/index.html')

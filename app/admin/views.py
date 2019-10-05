@@ -34,8 +34,10 @@ def blog_control(article_id):
         'article_name': article.article_name,
         'file_name': article.file_name}
     if request.method == 'DELETE':
+        '''
         article.delete()
         article.commit()
+        '''
         return jsonify(article_dict)
     return 'testing'
 

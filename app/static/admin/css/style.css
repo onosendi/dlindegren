@@ -46,3 +46,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.article-item {
+  display: block;
+  height: auto;
+  transition: height 350ms ease-in-out;
+}
+
+.delete {
+  display: none;
+  height: 0;
+  overflow: hidden;
+}
