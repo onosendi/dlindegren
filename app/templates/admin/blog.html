@@ -4,10 +4,9 @@
 <h1>Blog admin</h1>
 {% for article in articles %}
   <div class="article-item" data-url="{{ url_for('admin.blog_control', article_id=article.id) }}">
-    <p>
-      {{ article.article_name }}
-      <button data-method="delete" type="button">Delete</button>
-    </p>
+    <span class="article-name">{{ article.article_name }}</span>
+    <button class="edit-article" type="button">Edit</button>
+    <button class="delete-article" data-method="delete" type="button">Delete</button>
   </div>
 {% endfor %}
 {% endblock %}

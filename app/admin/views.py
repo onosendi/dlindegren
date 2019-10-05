@@ -4,9 +4,11 @@
 
     End points for admin.
 '''
+import re
+import urllib.parse
 from werkzeug.urls import url_parse
 from flask import (Blueprint, render_template, redirect, url_for, flash,
-                   request, make_response, jsonify)
+                   request, jsonify, abort)
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
 from app.admin.models import AdminUser, register_user
@@ -28,18 +30,21 @@ def blog():
 def blog_control(article_id):
     article = BlogArticle.query.filter_by(id=article_id).first()
     if not article:
-        return make_response(jsonify({'error': 'Not found'}), 404)
+        abort(404)
     article_dict = {
         'article_id': article.id,
         'article_name': article.article_name,
         'file_name': article.file_name}
+    if request.method == 'PUT':
+        article_name = request.json.get('article_name')
+        file_name = re.sub(r'\W+', '-', article_name)
+        article.article_name = article_name
+        article.file_name = file_name
+        article.commit()
     if request.method == 'DELETE':
-        '''
         article.delete()
         article.commit()
-        '''
-        return jsonify(article_dict)
-    return 'testing'
+    return jsonify(article_dict)
 
 
 @admin.route('/')
