@@ -1,0 +1,9 @@
+{% with flashed_messages = get_flashed_messages() %}
+  {% if flashed_messages %}
+  <ul>
+    {% for message in flashed_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endwith %}

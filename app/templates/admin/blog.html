@@ -1,6 +1,6 @@
-{% extends "_base.html" %}
+{% extends "/admin/_base.html" %}
 {% block page_title %}Blog admin{% endblock %}
-{% block content %}
+{% block body %}
 <h1>Blog admin</h1>
 {% for article in articles %}
   <div class="article-item" data-url="{{ url_for('admin.blog_control', article_id=article.id) }}">

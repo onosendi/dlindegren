@@ -19,8 +19,8 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin.route('/blog')
 @login_required
 def blog():
-    articles = BlogArticle.query.\
-        filter_by(active=True).order_by(BlogArticle.created.desc()).all()
+    articles = BlogArticle.query.filter_by(active=True).\
+        order_by(BlogArticle.created.desc()).all()
     return render_template('admin/blog.html', articles=articles)
 
 
