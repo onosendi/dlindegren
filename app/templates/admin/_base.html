@@ -5,10 +5,11 @@
 {% block meta %}
 {% endblock %}
 <title>{% block page_title %}{% endblock %} | dlindegren.com</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/style.css') }}">
 {% include "_flash-messages.html" %}
 {% block body %}
 {% endblock %}
+<script src="{{ url_for('static', filename='admin/js/main.js') }}"></script>
 {% block script %}
 {% endblock %}
 </html>
