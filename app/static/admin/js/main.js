@@ -1,8 +1,6 @@
 (function() {
   "use strict";
 
-// Show an element
-var show = function (elem) {
   let send = function(url, method) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
