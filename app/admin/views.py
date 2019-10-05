@@ -5,7 +5,7 @@
 import re
 from werkzeug.urls import url_parse
 from flask import (Blueprint, render_template, redirect, url_for, flash,
-                   request)
+                   request, jsonify)
 from flask.views import MethodView
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
@@ -29,23 +29,26 @@ class Blog(MethodView):
         article_name = request.json.get('article_name')
         file_name = self._get_file_name(article_name)
         article = BlogArticle(article_name=article_name, file_name=file_name)
+        '''
         article = article.commit()
         return self._jsonify(article)
+        '''
+        return self._jsonify(article), 201
 
     def put(self):
         article = self._get_article()
         article_name = request.json.get('article_name')
-        file_name = self._file_name(article_name)
+        file_name = self._get_file_name(article_name)
         article.article_name = article_name
         article.file_name = file_name
         article.commit()
-        return self._jsonify(article)
+        return self._jsonify(article), 200
 
     def delete(self):
         article = self._get_article()
         article.delete()
         article.commit()
-        return self._jsonify(article)
+        return self._jsonify(article), 200
 
     def _get_file_name(self, article_name):
         return re.sub(r'\W+', '-', article_name.lower())
@@ -55,10 +58,15 @@ class Blog(MethodView):
         return BlogArticle.query.filter_by(id=article_id).first()
 
     def _jsonify(self, article):
-        return {
-            'article_id': article.id,
-            'article_name': article.article_name,
-            'article_file_name': article.file_name}
+        return jsonify({
+            'static': 'okay',
+            'response_url': url_for(request.endpoint),
+            'article': {
+                'article_id': article.id,
+                'article_name': article.article_name,
+                'article_file_name': article.file_name
+                }
+            })
 
 
 @admin.route('/')

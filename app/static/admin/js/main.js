@@ -6,7 +6,7 @@
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status < 300) {
         callbackArray.map(callback => callback());
-        console.log('Success');
+        console.log(xhr);
       } else {
         console.log('The request failed!');
       }
