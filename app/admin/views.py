@@ -5,13 +5,39 @@
     End points for admin.
 '''
 from werkzeug.urls import url_parse
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import (Blueprint, render_template, redirect, url_for, flash,
+                   request, make_response, jsonify)
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
 from app.admin.models import AdminUser, register_user
+from app.blog.models import BlogArticle
 from app.admin.forms import LoginForm, FirstTimeForm
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
+
+
+@admin.route('/blog')
+@login_required
+def blog():
+    articles = BlogArticle.query.\
+        filter_by(active=True).order_by(BlogArticle.created.desc()).all()
+    return render_template('admin/blog.html', articles=articles)
+
+
+@admin.route('/blog/<int:article_id>', methods=['POST', 'PUT', 'DELETE'])
+def blog_control(article_id):
+    article = BlogArticle.query.filter_by(id=article_id).first()
+    if not article:
+        return make_response(jsonify({'error': 'Not found'}), 404)
+    article_dict = {
+        'article_id': article.id,
+        'article_name': article.article_name,
+        'file_name': article.file_name}
+    if request.method == 'DELETE':
+        article.delete()
+        article.commit()
+        return jsonify(article_dict)
+    return 'testing'
 
 
 @admin.route('/')
