@@ -56,12 +56,12 @@ class Blog(MethodView):
 
     def _jsonify(self, article):
         return jsonify({
-            'static': 'okay',
-            'response_url': url_for(request.endpoint),
+            'url': url_for(request.endpoint),
+            'status': 'okay',
             'article': {
-                'article_id': article.id,
-                'article_name': article.article_name,
-                'article_file_name': article.file_name
+                'id': article.id,
+                'name': article.article_name,
+                'file_name': article.file_name
                 }
             })
 
