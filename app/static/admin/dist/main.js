@@ -121,7 +121,94 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 (function () {
   "use strict";
 
-  console.log('testing');
+  var sendAsync = function sendAsync(method, url, callbackArray, data) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        callbackArray.map(function (callback) {
+          return callback();
+        });
+        console.log(xhr);
+      } else {
+        console.log('The request failed!');
+      }
+    };
+
+    xhr.open(method, url);
+
+    if (data) {
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send(JSON.stringify(data));
+    } else xhr.send();
+  };
+
+  var deleteItem = function deleteItem(elem) {
+    return elem.style.display = 'none';
+  };
+
+  var editItem = function editItem(elem, text) {
+    return elem.innerHTML = text;
+  };
+
+  var addItem = function addItem(articleName) {
+    console.log(articleName);
+  };
+
+  var articleItems = document.querySelectorAll('.article-item');
+
+  var _loop_1 = function _loop_1(elem) {
+    var url = elem.getAttribute('data-url');
+    var articleName = elem.querySelector('.article-name');
+    var deleteElem = elem.querySelector('.delete-article');
+    deleteElem.addEventListener('click', function (event) {
+      var t = 'Are you sure you want to delete "' + articleName.innerHTML + '"?';
+
+      if (confirm(t) == true) {
+        sendAsync('DELETE', url, [function () {
+          return deleteItem(elem);
+        }]);
+      }
+    });
+    var editElem = elem.querySelector('.edit-article');
+    editElem.addEventListener('click', function (event) {
+      var t = articleName.innerHTML;
+      var p = prompt('Edit article', t);
+
+      if (p != null && p !== t) {
+        var payload = {
+          'article_name': p
+        };
+        sendAsync('PUT', url, [function () {
+          return editItem(articleName, p);
+        }], payload);
+      }
+    });
+  };
+
+  for (var _i = 0, articleItems_1 = articleItems; _i < articleItems_1.length; _i++) {
+    var elem = articleItems_1[_i];
+
+    _loop_1(elem);
+  }
+
+  var addArticle = document.querySelector('.add-article');
+
+  if (addArticle) {
+    addArticle.addEventListener('click', function (event) {
+      var url = addArticle.getAttribute('data-url');
+      var p = prompt('Add article');
+
+      if (p != null) {
+        var payload = {
+          'article_name': p
+        };
+        sendAsync('POST', url, [function () {
+          return addItem(p);
+        }], payload);
+      }
+    });
+  }
 })();
 },{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -151,7 +238,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43231" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33357" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -327,4 +414,3 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.ts"], null)
-//# sourceMappingURL=/main.js.map

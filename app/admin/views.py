@@ -26,15 +26,10 @@ class Blog(MethodView):
         return render_template('admin/blog.html', articles=articles)
 
     def post(self):
-        return 'testing'
-        return jsonify({'test': 'testing'})
         article_name = request.json.get('article_name')
         file_name = self._get_file_name(article_name)
         article = BlogArticle(article_name=article_name, file_name=file_name)
-        '''
         article = article.commit()
-        return self._jsonify(article)
-        '''
         return self._jsonify(article), 201
 
     def put(self):
