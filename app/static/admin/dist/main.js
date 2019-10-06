@@ -118,98 +118,94 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.ts":[function(require,module,exports) {
-(function () {
-  "use strict";
+var sendAsync = function sendAsync(method, url, callbackArray, data) {
+  var xhr = new XMLHttpRequest();
 
-  var sendAsync = function sendAsync(method, url, callbackArray, data) {
-    var xhr = new XMLHttpRequest();
-
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        callbackArray.map(function (callback) {
-          return callback();
-        });
-        console.log(xhr);
-      } else {
-        console.log('The request failed!');
-      }
-    };
-
-    xhr.open(method, url);
-
-    if (data) {
-      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xhr.send(JSON.stringify(data));
-    } else xhr.send();
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      callbackArray.map(function (callback) {
+        return callback();
+      });
+      console.log(xhr);
+    } else {
+      console.log('The request failed!');
+    }
   };
 
-  var deleteItem = function deleteItem(elem) {
-    return elem.style.display = 'none';
-  };
+  xhr.open(method, url);
 
-  var editItem = function editItem(elem, text) {
-    return elem.innerHTML = text;
-  };
+  if (data) {
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(data));
+  } else xhr.send();
+};
 
-  var addItem = function addItem(articleName) {
-    console.log(articleName);
-  };
+var deleteItem = function deleteItem(elem) {
+  return elem.style.display = 'none';
+};
 
-  var articleItems = document.querySelectorAll('.article-item');
+var editItem = function editItem(elem, text) {
+  return elem.innerHTML = text;
+};
 
-  var _loop_1 = function _loop_1(elem) {
-    var url = elem.getAttribute('data-url');
-    var articleName = elem.querySelector('.article-name');
-    var deleteElem = elem.querySelector('.delete-article');
-    deleteElem.addEventListener('click', function (event) {
-      var t = 'Are you sure you want to delete "' + articleName.innerHTML + '"?';
+var addItem = function addItem(articleName) {
+  console.log(articleName);
+};
 
-      if (confirm(t) == true) {
-        sendAsync('DELETE', url, [function () {
-          return deleteItem(elem);
-        }]);
-      }
-    });
-    var editElem = elem.querySelector('.edit-article');
-    editElem.addEventListener('click', function (event) {
-      var t = articleName.innerHTML;
-      var p = prompt('Edit article', t);
+var articleItems = document.querySelectorAll('.article-item');
 
-      if (p != null && p !== t) {
-        var payload = {
-          'article_name': p
-        };
-        sendAsync('PUT', url, [function () {
-          return editItem(articleName, p);
-        }], payload);
-      }
-    });
-  };
+var _loop_1 = function _loop_1(elem) {
+  var url = elem.getAttribute('data-url');
+  var articleName = elem.querySelector('.article-name');
+  var deleteElem = elem.querySelector('.delete-article');
+  deleteElem.addEventListener('click', function (event) {
+    var t = 'Are you sure you want to delete "' + articleName.innerHTML + '"?';
 
-  for (var _i = 0, articleItems_1 = articleItems; _i < articleItems_1.length; _i++) {
-    var elem = articleItems_1[_i];
+    if (confirm(t) == true) {
+      sendAsync('DELETE', url, [function () {
+        return deleteItem(elem);
+      }]);
+    }
+  });
+  var editElem = elem.querySelector('.edit-article');
+  editElem.addEventListener('click', function (event) {
+    var t = articleName.innerHTML;
+    var p = prompt('Edit article', t);
 
-    _loop_1(elem);
-  }
+    if (p != null && p !== t) {
+      var payload = {
+        'article_name': p
+      };
+      sendAsync('PUT', url, [function () {
+        return editItem(articleName, p);
+      }], payload);
+    }
+  });
+};
 
-  var addArticle = document.querySelector('.add-article');
+for (var _i = 0, articleItems_1 = articleItems; _i < articleItems_1.length; _i++) {
+  var elem = articleItems_1[_i];
 
-  if (addArticle) {
-    addArticle.addEventListener('click', function (event) {
-      var url = addArticle.getAttribute('data-url');
-      var p = prompt('Add article');
+  _loop_1(elem);
+}
 
-      if (p != null) {
-        var payload = {
-          'article_name': p
-        };
-        sendAsync('POST', url, [function () {
-          return addItem(p);
-        }], payload);
-      }
-    });
-  }
-})();
+var addArticle = document.querySelector('.add-article');
+
+if (addArticle) {
+  addArticle.addEventListener('click', function (event) {
+    var url = addArticle.getAttribute('data-url');
+    var p = prompt('Add article');
+
+    if (p != null) {
+      var payload = {
+        'article_name': p
+      };
+      sendAsync('POST', url, [function () {
+        return addItem(p);
+      }], payload);
+    }
+  });
+}
 },{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

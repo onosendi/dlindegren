@@ -1,6 +1,3 @@
-(() => {
-"use strict";
-
 const sendAsync = (method, url, callbackArray, data) => {
   const xhr = new XMLHttpRequest();
   xhr.onload = () => {
@@ -60,5 +57,3 @@ if (addArticle) {
     }
   });
 }
-
-})();
