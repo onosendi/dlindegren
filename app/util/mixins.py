@@ -1,8 +1,6 @@
 '''
-    app.mixins
-    ~~~~~~~~~~
-
-    Mixins for SQLAlchemy.
+    app.util.mixins
+    ~~~~~~~~~~~~~~~
 '''
 from datetime import datetime
 from app.extensions import db
