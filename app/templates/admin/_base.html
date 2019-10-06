@@ -6,11 +6,11 @@
 {% block meta %}
 {% endblock %}
 <title>{% block page_title %}{% endblock %} | dlindegren.com</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/dist/style.css') }}">
 {% include "_flash-messages.html" %}
 {% block body %}
 {% endblock %}
-<script src="{{ url_for('static', filename='admin/js/dist/main.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/dist/main.js') }}"></script>
 {% block script %}
 {% endblock %}
 </html>
