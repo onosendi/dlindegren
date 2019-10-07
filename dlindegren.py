@@ -10,6 +10,9 @@ from app.app_factory import create_app
 from app.extensions import db
 from app.admin.models import AdminUser, register_user
 from app.blog.models import BlogArticle, BlogCategory
+from app.util.testing import (
+    load_articles, load_categories, create_fake_articles,
+    create_fake_categories)
 
 # uWSGI entry point.
 if os.environ.get('FLASK_ENV') == 'production':
@@ -26,4 +29,10 @@ def make_shell_context():
             'AdminUser': AdminUser,
             'register_user': register_user,
             'BlogArticle': BlogArticle,
-            'BlogCategory': BlogCategory}
+            'BlogCategory': BlogCategory,
+            'load_articles': load_articles,
+            'load_categories': load_categories,
+            'create_fake_articles': create_fake_articles,
+            'create_fake_categories': create_fake_categories,
+            'a': load_articles(),
+            'c': load_categories()}

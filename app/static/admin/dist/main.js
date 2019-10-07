@@ -118,98 +118,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.ts":[function(require,module,exports) {
-var sendAsync = function sendAsync(method, url, callback, data) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.onload = function () {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      var response = JSON.parse(xhr.response);
-      callback(response);
-    } else {
-      console.log('The request failed!');
-    }
-  };
-
-  xhr.open(method, url);
-
-  if (data) {
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify(data));
-  } else xhr.send();
-};
-
-var deleteEventListener = function deleteEventListener(elem, articleName, url) {
-  var listenElem = elem.querySelector('.delete-article');
-  listenElem.addEventListener('click', function (event) {
-    var t = 'Are you sure you want to delete "' + articleName.innerHTML + '"?';
-
-    if (confirm(t) == true) {
-      sendAsync('DELETE', url, function () {
-        return deleteItem(elem);
-      });
-    }
-  });
-};
-
-var editEventListener = function editEventListener(elem, articleName, url) {
-  var listenElem = elem.querySelector('.edit-article');
-  listenElem.addEventListener('click', function (event) {
-    var t = articleName.innerHTML;
-    var p = prompt('Edit article', t);
-
-    if (p != null && p !== t) {
-      var payload = {
-        'article_name': p
-      };
-      sendAsync('PUT', url, function () {
-        return editItem(articleName, p);
-      }, payload);
-    }
-  });
-};
-
-var deleteItem = function deleteItem(elem) {
-  return elem.style.display = 'none';
-};
-
-var editItem = function editItem(elem, text) {
-  return elem.innerHTML = text;
-};
-
-var addItem = function addItem(response) {
-  var article = response['article'];
-  var articleParent = document.querySelector('.article-list');
-  var articleChild = document.createElement('li');
-  articleChild.classList.add('article-item');
-  articleChild.setAttribute('data-url', response['url'] + "?article_id=" + article['id']);
-  articleChild.innerHTML = "\n    <span class=\"article-name\">" + article['name'] + "</span>\n    <button class=\"edit-article\" type=\"button\">Edit</button>\n    <button class=\"delete-article\" type=\"button\">Delete</button>\n  ";
-  articleParent.prepend(articleChild);
-  articleName = articleChild.querySelector('.article-name');
-  url = articleChild.getAttribute('data-url');
-  deleteEventListener(articleChild, articleName, url);
-  editEventListener(articleChild, articleName, url);
-};
-
-for (var _i = 0, _a = document.querySelectorAll('.article-item'); _i < _a.length; _i++) {
-  var elem = _a[_i];
-  var url = elem.getAttribute('data-url');
-  var articleName = elem.querySelector('.article-name');
-  deleteEventListener(elem, articleName, url);
-  editEventListener(elem, articleName, url);
-}
-
-addArticle = document.querySelector('.add-article');
-addArticle.addEventListener('click', function (event) {
-  var url = addArticle.getAttribute('data-url');
-  var p = prompt('Add article');
-
-  if (p != null) {
-    var payload = {
-      'article_name': p
-    };
-    sendAsync('POST', url, addItem, payload);
-  }
-});
+var aListEl = document.querySelector('.article-list');
+var t = aListEl.querySelectorAll('.article-list > li');
+console.log(t);
 },{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -238,7 +149,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33357" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43113" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

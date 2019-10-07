@@ -25,6 +25,6 @@ class BaseControl:
             db.session.rollback()
             raise E
 
-    def delete(self):
+    def soft_delete(self):
         self.active = False
         self.deleted = datetime.utcnow()
