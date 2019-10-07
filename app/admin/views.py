@@ -2,17 +2,16 @@
     app.admin.views
     ~~~~~~~~~~~~~~~
 '''
-import re
 from werkzeug.urls import url_parse
 from flask import (Blueprint, render_template, redirect, url_for, flash,
                    request, jsonify)
 from flask.views import MethodView
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
-from app.extensions import db
 from app.admin.models import AdminUser, register_user
 from app.blog.models import BlogArticle, BlogCategory
 from app.admin.forms import LoginForm, FirstTimeForm
+from app.util.views import json_error
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -34,7 +33,26 @@ class AdminBlogArticle(MethodView):
     methods = ['POST', 'PUT', 'DELETE']
 
     def post(self):
-        pass
+        aname = request.json.get('article_name')
+        l_aname = func.lower(BlogArticle.article_name)
+        a = BlogArticle.query.\
+            filter(l_aname == func.lower(aname)).first()
+        if not a:
+            a = BlogArticle(article_name=aname)
+            a.set_file_name()
+            a.commit()
+            return jsonify({
+                'status': 'okay',
+                'url': url_for(request.endpoint),
+                'article': {
+                    'id': a.id,
+                    'name': a.article_name,
+                    'file_name': a.file_name,
+                    }
+                })
+        else:
+            return json_error('Article "{}" already exists in the database'
+                              .format(aname))
 
     def put(self):
         pass

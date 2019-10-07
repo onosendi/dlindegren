@@ -118,9 +118,51 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.ts":[function(require,module,exports) {
-var aListEl = document.querySelector('.article-list');
-var t = aListEl.querySelectorAll('.article-list > li');
-console.log(t);
+var sendAsync = function sendAsync(method, url, callback, data) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      try {
+        var response = JSON.parse(xhr.response);
+        console.log(response);
+        callback(response);
+      } catch (error) {
+        console.log('Not a json string');
+      }
+    } else {
+      console.log('The request failed!');
+    }
+  };
+
+  xhr.open(method, url);
+
+  if (data) {
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(data));
+  } else xhr.send();
+};
+/**
+* Admin Blog
+*/
+
+
+var adminBlog = document.getElementById('admin-blog');
+
+if (adminBlog) {
+  console.log(adminBlog);
+
+  var createArticleEl_1 = function createArticleEl_1(response) {
+    console.log('testing');
+  };
+
+  adminBlog.querySelector('.add-article').addEventListener('click', function (event) {
+    var payload = {
+      'article_name': 'article testing9'
+    };
+    sendAsync('POST', '/admin/blog/article', createArticleEl_1, payload);
+  });
+}
 },{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -149,7 +191,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43113" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43685" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

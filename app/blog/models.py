@@ -2,6 +2,7 @@
     app.blog.models
     ~~~~~~~~~~~~~~~
 '''
+import re
 from app.extensions import db
 from app.util.mixins import BaseModel, BaseControl
 
@@ -24,6 +25,9 @@ class BlogArticle(db.Model, BaseModel, BaseControl):
 
     def __repr__(self):
         return '<Article {}>'.format(self.article_name)
+
+    def set_file_name(self):
+        self.file_name = re.sub(r'\W+', '-', self.article_name.lower())
 
     def has_category(self, category):
         return self.categories.\
