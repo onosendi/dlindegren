@@ -1,0 +1,17 @@
+{
+  "name": "dlindegren",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build src/parcel-entry.js --no-source-maps --out-file main",
+    "dev": "parcel watch src/parcel-entry.js --hmr-port 5001 --no-source-maps --out-file main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.23.7"
+  }
+}
