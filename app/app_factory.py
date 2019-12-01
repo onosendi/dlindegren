@@ -27,32 +27,17 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    from app.extensions import db, migrate, login, misaka
-    db.init_app(app)
-    migrate.init_app(app, db)
-    login.init_app(app)
-    login.login_view = 'admin.login'
+    from app.extensions import misaka
     misaka.init_app(app)
 
 
 def configure_blueprints(app):
     from app.errors.views import errors
-    from app.frontend.views import frontend
-    from app.admin.views import admin, AdminBlogArticle, AdminBlogCategory
-    from app.blog.views import blog
+    from app.dlindegren.views import dlindegren
     from app.misc.views import misc
 
-    admin.add_url_rule(
-        '/blog/article',
-        view_func=AdminBlogArticle.as_view('blog_article'))
-    admin.add_url_rule(
-        '/blog/category',
-        view_func=AdminBlogCategory.as_view('blog_category'))
-
     app.register_blueprint(errors)
-    app.register_blueprint(frontend)
-    app.register_blueprint(admin)
-    app.register_blueprint(blog, subdomain='blog')
+    app.register_blueprint(dlindegren)
     app.register_blueprint(misc, subdomain='misc')
 
 

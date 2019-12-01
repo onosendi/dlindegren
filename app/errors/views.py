@@ -5,7 +5,6 @@
     Handle http errors.
 '''
 from flask import render_template, Blueprint
-from app.extensions import db
 
 errors = Blueprint('errors', __name__)
 
@@ -17,5 +16,4 @@ def page_not_found(error):
 
 @errors.app_errorhandler(500)
 def internal_error(error):
-    db.session.rollback()
     return render_template('errors/500.html'), 500
