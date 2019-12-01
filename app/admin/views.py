@@ -1,17 +1,79 @@
 '''
     app.admin.views
     ~~~~~~~~~~~~~~~
-
-    End points for admin.
 '''
 from werkzeug.urls import url_parse
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import (Blueprint, render_template, redirect, url_for, flash,
+                   request, jsonify)
+from flask.views import MethodView
 from sqlalchemy import func
 from flask_login import current_user, login_user, logout_user, login_required
-from app.admin.models import AdminUser
-from app.admin.forms import LoginForm
+from app.admin.models import AdminUser, register_user
+from app.blog.models import BlogArticle, BlogCategory
+from app.admin.forms import LoginForm, FirstTimeForm
+from app.util.views import json_error
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
+
+
+@login_required
+@admin.route('/blog')
+def blog():
+    articles = BlogArticle.query.filter_by(active=True).\
+        order_by(BlogArticle.created.desc()).all()
+    categories = BlogCategory.query.\
+        order_by(BlogCategory.created.desc()).all()
+    return render_template('admin/blog.html', articles=articles,
+                           categories=categories)
+
+
+class AdminBlogArticle(MethodView):
+
+    decorators = [login_required]
+    methods = ['POST', 'PUT', 'DELETE']
+
+    def post(self):
+        aname = request.json.get('article_name')
+        l_aname = func.lower(BlogArticle.article_name)
+        a = BlogArticle.query.\
+            filter(l_aname == func.lower(aname)).first()
+        if not a:
+            a = BlogArticle(article_name=aname)
+            a.set_file_name()
+            a.commit()
+            return jsonify({
+                'status': 'okay',
+                'url': url_for(request.endpoint),
+                'article': {
+                    'id': a.id,
+                    'name': a.article_name,
+                    'file_name': a.file_name,
+                    }
+                })
+        else:
+            return json_error('Article "{}" already exists in the database'
+                              .format(aname))
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
+
+class AdminBlogCategory(MethodView):
+
+    decorators = [login_required]
+    methods = ['POST', 'PUT', 'DELETE']
+
+    def post(self):
+        pass
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
 
 
 @admin.route('/')
@@ -42,6 +104,19 @@ def login():
             next_page = url_for('admin.index')
         return redirect(next_page)
     return render_template('admin/login.html', form=form)
+
+
+@admin.route('first-time', methods=['GET', 'POST'])
+def first_time():
+    if AdminUser.query.count() > 0:
+        return redirect(url_for('admin.login'))
+    form = FirstTimeForm()
+    if form.validate_on_submit():
+        user = register_user(form.username.data, form.email.data,
+                             form.password.data)
+        login_user(user)
+        return redirect(url_for('admin.index'))
+    return render_template('admin/first-time.html', form=form)
 
 
 @admin.route('/logout')

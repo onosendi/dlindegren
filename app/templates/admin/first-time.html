@@ -1,19 +1,24 @@
 {% extends "/admin/_base.html" %}
-{% block page_title %}Admin login{% endblock %}
-{% block meta %}
-<meta name="robots" content="noindex">
-<meta name="googlebot" content="noindex">
-{% endblock %}
+{% block page_title %}Admin first time set up{% endblock %}
 {% block body %}
+<h1>Admin first time set up.</h1>
 <form method="post" novalidate>
+  {% if form.username.errors %}
+  {{ form.username.errors[0] }}
+  {% endif %}
+  <br>
+  {{ form.username.label }}
+  {{ form.username }}
+  <br>
+
   {% if form.email.errors %}
   {{ form.email.errors[0] }}
   {% endif %}
   <br>
   {{ form.email.label }}
   {{ form.email }}
-
   <br>
+
   {% if form.password.errors %}
   {{ form.password.errors[0] }}
   {% endif %}
@@ -22,11 +27,14 @@
   {{ form.password }}
   <br>
 
-  {{ form.remember_me.label }}
-  {{ form.remember_me }}
+  {% if form.password2.errors %}
+  {{ form.password2.errors[0] }}
+  {% endif %}
+  <br>
+  {{ form.password2.label }}
+  {{ form.password2 }}
   <br>
 
-  {{ form.recaptcha }}
   {{ form.submit }}
   {{ form.hidden_tag() }}
 </form>

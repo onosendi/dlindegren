@@ -1,7 +1,7 @@
-{% extends "_base.html" %}
+{% extends "/blog/_base.html" %}
 {% block page_title %}Daniel Lindegren's blog{% endblock %}
 {% block page_description %}Daniel Lindegren's personal blog{% endblock %}
-{% block content %}
+{% block body %}
 {% for article in articles %}
 <p>
   {{ article.article_name }}
