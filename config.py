@@ -23,9 +23,6 @@ class BaseConfig:
     TESTING = False
     SERVER_NAME = 'dlindegren.local:5000'
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
-    SQLALCHEMY_ECHO = False
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DefaultConfig(BaseConfig):
