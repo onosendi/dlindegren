@@ -39,7 +39,6 @@ upgrade() {
     sudo systemctl stop $service
     source venv/bin/activate
     pip install -r requirements.txt
-    flask db upgrade
     sudo systemctl start $service
     exit 0
 }
