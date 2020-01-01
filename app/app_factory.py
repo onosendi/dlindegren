@@ -30,13 +30,8 @@ def configure_extensions(app):
     ''' Extensions go here. '''
 
 def configure_blueprints(app):
-    from app.errors.views import errors
-    from app.dlindegren.views import dlindegren
-    from app.misc.views import misc
-
-    app.register_blueprint(errors)
+    from app.views import dlindegren
     app.register_blueprint(dlindegren)
-    app.register_blueprint(misc, subdomain='misc')
 
 
 def configure_jinja(app):
