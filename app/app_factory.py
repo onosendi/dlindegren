@@ -27,9 +27,7 @@ def configure_app(app, config):
 
 
 def configure_extensions(app):
-    from app.extensions import misaka
-    misaka.init_app(app)
-
+    ''' Extensions go here. '''
 
 def configure_blueprints(app):
     from app.errors.views import errors
