@@ -21,7 +21,6 @@ class BaseConfig:
     '''
     DEBUG = False
     TESTING = False
-    SERVER_NAME = 'dlindegren.local:5000'
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret'
 
 
@@ -32,4 +31,3 @@ class DefaultConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     ''' Production configurations. '''
-    SERVER_NAME = 'dlindegren.com'

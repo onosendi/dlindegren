@@ -11,4 +11,4 @@ dlindegren = Blueprint('static_view', __name__)
 
 @dlindegren.route('/')
 def index():
-    return render_template('dlindegren/index.html')
+    return render_template('index.html')
