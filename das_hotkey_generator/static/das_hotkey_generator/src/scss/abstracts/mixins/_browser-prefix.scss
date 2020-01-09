@@ -1,0 +1,10 @@
+@mixin browser-prefix($property, $value, $browsers,
+                      $valid-browsers: $valid-browsers) {
+  @each $browser in $browsers {
+    @if index($valid-browsers, $browser) == null {
+      @error '"#{$browser}" is an invalid browser.';
+    }
+    -#{$browser}-#{$property}: #{$value};
+  }
+  #{$property}: #{$value};
+}
