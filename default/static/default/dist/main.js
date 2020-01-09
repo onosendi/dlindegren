@@ -191,7 +191,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"parcel-entry.js":[function(require,module,exports) {
+},{"/home/onosendi/repositories/dlindegren/default/static/default/img/paper-texture-pattern.jpg":[["paper-texture-pattern.c34473e8.jpg","img/paper-texture-pattern.jpg"],"img/paper-texture-pattern.jpg"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"parcel-entry.js":[function(require,module,exports) {
 "use strict";
 
 require("/src/js/main.js");
@@ -402,4 +402,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","parcel-entry.js"], null)
-//# sourceMappingURL=/main.js.map
+//# sourceMappingURL=main.js.map

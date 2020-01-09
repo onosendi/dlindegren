@@ -52,6 +52,7 @@ html, body {
 }
 
 body {
+  background: url("paper-texture-pattern.c34473e8.jpg");
   color: #444;
 }
 
@@ -133,4 +134,4 @@ article .social-links a:hover > .fa, article .social-links a:focus > .fa, articl
   transform: translateY(-3px);
 }
 
-/*# sourceMappingURL=/main.css.map */
+/*# sourceMappingURL=main.css.map */
