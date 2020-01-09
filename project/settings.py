@@ -46,6 +46,7 @@ class DefaultConfig(Configuration):
         'django.contrib.staticfiles',
 
         'default.apps.DefaultConfig',
+        'das_hotkey_generator.apps.DasHotkeyGeneratorConfig',
     ]
 
     MIDDLEWARE = [
