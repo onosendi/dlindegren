@@ -45,7 +45,7 @@ class DefaultConfig(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         
-        'crispy_forms',
+        'widget_tweaks',
 
         'default.apps.DefaultConfig',
         'das_hotkey_generator.apps.DasHotkeyGeneratorConfig',
