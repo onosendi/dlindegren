@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{% block page_description %}{% endblock %}">
+<meta name="author" content="Daniel Lindegren">
+{% block meta %}
+{% endblock %}
+<title>{% block page_title %}{% endblock %} | dlindegren.com</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono%7CRoboto+Slab&display=swap">
+{% load static %}
+<link rel="stylesheet" href="{% static 'default/dist/main.css' %}">
+{% block body %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+<script src="{% static 'default/dist/main.js' %}"></script>
+</html>

@@ -1,0 +1,21 @@
+.c-unordered-list {
+  list-style-type: circle;
+  margin: 0 0 1.5rem 1.5rem;
+}
+
+.c-ordered-list {
+  list-style-type: decimal;
+  margin: 0 0 1.5rem 1.5rem;
+}
+
+.c-def-list {
+  margin-bottom: 1.5rem;
+}
+
+.c-def-list dt {
+  font-weight: bold;
+}
+
+.c-def-list dd {
+  margin: 0 0 0.75rem 1.5rem;
+}
