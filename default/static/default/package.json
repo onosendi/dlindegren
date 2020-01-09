@@ -1,0 +1,17 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build parcel-entry.js --no-source-maps --out-file main",
+    "dev": "parcel watch parcel-entry.js --hmr-hostname localhost --hmr-port 5001 --out-file main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.24.3"
+  }
+}

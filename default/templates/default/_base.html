@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -9,16 +10,16 @@
 <title>{% block page_title %}{% endblock %} | dlindegren.com</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono%7CRoboto+Slab&display=swap">
-<link rel="stylesheet" href="{{ url_for('static', filename='dist/main.css') }}">
+<link rel="stylesheet" href="{% static 'default/dist/main.css' %}">
 <!-- Style background here due to parcel/sass url() issue -->
 <style>
   body {
-    background: url("{{ url_for('static', filename='img/paper-texture-pattern.jpg')}}");
+    background: url({% static 'default/img/paper-texture-pattern.jpg' %});
   }
 </style>
-{% include "_flash-messages.html" %}
 {% block body %}
 {% endblock %}
 {% block script %}
 {% endblock %}
+<script src="{% static 'default/dist/main.js' %}"></script>
 </html>
