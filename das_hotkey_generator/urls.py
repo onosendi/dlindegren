@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import IndexView
+from .views import index_view
 
 app_name = 'das_hotkey_generator'
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('', index_view, name='index'),
     ]
