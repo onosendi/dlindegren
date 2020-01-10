@@ -134,3 +134,4 @@ class DefaultConfig(Configuration):
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False
+    ALLOWED_HOSTS = ['dlindegren.com']
