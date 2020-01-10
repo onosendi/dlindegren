@@ -1,5 +1,0 @@
-@mixin create-alert($background) {
-  background: $background;
-  border-color: darken($background, 10%);
-  color: darken($background, 60%);
-}
