@@ -128,6 +128,7 @@ class DefaultConfig(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+    STATIC_ROOT = '{}/static/'.format(BASE_DIR)
     STATIC_URL = '/static/'
 
 

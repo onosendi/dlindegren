@@ -1,0 +1,6 @@
+@mixin form-placeholder {
+  &::placeholder {
+    color: $gray-200;
+    opacity: 1;
+  }
+}
