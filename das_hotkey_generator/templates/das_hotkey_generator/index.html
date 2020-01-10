@@ -1,3 +1,6 @@
+{% load static %}
+{% load widget_tweaks %}
+
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8">
@@ -5,7 +8,6 @@
 <meta name="description" content="Generate hotkeys for DAS Trader based on your criteria">
 <title>DAS Trader hotkey generator | dlindegren.com</title>
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One%7CUbuntu&display=swap" rel="stylesheet">
-{% load static %}
 <link href="{% static 'das_hotkey_generator/dist/main.css' %}" rel="stylesheet">
 <div class="l-grid">
   <header class="l-grid__header">
@@ -71,6 +73,46 @@
   <aside class="l-grid__generator">
     <div class="c-panel">
       <h2 class="c-panel__title">Generator</h2>
+      <form class="c-form" method="post" novalidate>
+        <div class="c-form__row">
+          <div class="c-form__group">
+            <label for="{{ form.risk.id_for_label }}">{{ form.risk.label }}</label>
+            {% render_field form.risk class+='c-form__control' placeholder='100' %}
+          </div>
+          <div class="c-form__group">
+            <label for="{{ form.route.id_for_label }}">{{ form.route.label }}</label>
+            {% render_field form.route class+='c-form__control' placeholder='SMRTL' %}
+          </div>
+        </div>
+        <div class="c-form__row">
+          <div class="c-form__group">
+            <label for="{{ form.long_key.id_for_label }}">{{ form.long_key.label }}</label>
+            {% render_field form.long_key class+='c-form__control' placeholder='Ctrl+Shift' %}
+          </div>
+          <div class="c-form__group">
+            <label for="{{ form.short_key.id_for_label }}">{{ form.short_key.label }}</label>
+            {% render_field form.short_key class+='c-form__control' placeholder='Alt+Shift' %}
+          </div>
+        </div>
+        <div class="c-form__row">
+          <div class="c-form__group">
+            {% render_field form.default_hotkeys %}
+            <label class="c-form__check-label" for="{{ form.default_hotkeys.id_for_label }}">{{ form.default_hotkeys.label }}</label>
+          </div>
+        </div>
+        {% csrf_token %}
+        <input class="c-btn c-btn--primary" type="submit" value="Generate Hotkeys">
+      </form>
+      {% if hotkeys %}
+        <hr>
+        <div class="c-alert c-alert--warning">
+          <p class="c-paragraph">I accept no responsibility for misconfigured hotkey files. Always test your new configurations in a simulator before using them live.</p>
+        </div>
+        <p class="c-paragraph">Copy and paste the hotkeys below into your <mark>MyHotkeys</mark> file.</p>
+        <div class="c-panel">
+          <pre class="c-code"><code>{% for line in hotkeys %}{{ line }}<br>{% endfor %}</code></pre>
+        </div>
+      {% endif %}
     </div>
   </aside>
 </div>
