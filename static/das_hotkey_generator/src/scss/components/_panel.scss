@@ -1,0 +1,24 @@
+.c-panel {
+  background: $panel-color;
+  border: $border-width solid $gray-200;
+  margin-bottom: $grid-gap;
+  overflow: hidden;
+  padding: $panel-padding $panel-padding 0 $panel-padding;
+}
+
+.c-panel--no-top-border {
+  border-top: none;
+}
+
+.c-panel--bottom-padding {
+  padding-bottom: $panel-padding;
+}
+
+.c-panel__title {
+  border-bottom: $border-width solid $gray-200;
+  color: $color-yellow;
+  font: bold 2rem $header-font-stack;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+}

@@ -1,0 +1,13 @@
+.c-masthead {
+  font: bold 2.6rem / 1 $header-font-stack;
+  margin: 0 auto;
+  text-transform: uppercase;
+
+  .das {
+    color: $color-yellow;
+  }
+
+  .trader {
+    color: $color-green;
+  }
+}

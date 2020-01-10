@@ -1,0 +1,11 @@
+.c-img {
+  border: 1px solid $gray-900;
+  display: block;
+  max-width: 150px;
+  width: 25%;
+}
+
+.c-img--right-inline {
+  float: right;
+  margin: 0 0 1.5rem 1.5rem;
+}
