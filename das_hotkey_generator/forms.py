@@ -1,4 +1,8 @@
-from django.forms import Form, CharField, BooleanField
+from django.forms import (
+    Form,
+    CharField,
+    BooleanField,
+)
 
 
 class DasHotkeyGeneratorForm(Form):
