@@ -44,7 +44,7 @@ class DefaultConfig(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        
+
         'widget_tweaks',
 
         'default.apps.DefaultConfig',
@@ -134,4 +134,4 @@ class DefaultConfig(Configuration):
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False
-    ALLOWED_HOSTS = ['dlindegren.com']
+    ALLOWED_HOSTS = ['dlindegren.com', 'www.dlindegren.com']
