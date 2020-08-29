@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build static/parcel-entry.js --out-dir static/dist --out-file main",
-    "start": "parcel static/src/js/main.js --out-dir static/dist --out-file main"
+    "build": "parcel build static/parcel-entry.js --public-url ./ --out-dir static/dist --out-file main",
+    "start": "parcel static/src/js/main.js --public-url ./ --out-dir static/dist --out-file main"
   },
   "repository": {
     "type": "git",
