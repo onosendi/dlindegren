@@ -1,0 +1,22 @@
+{
+  "name": "dlindegren",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build static/parcel-entry.js --out-dir static/dist --out-file main",
+    "start": "parcel static/src/js/main.js --out-dir static/dist --out-file main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com//onosendi/dlindegren.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-clean-dist": "0.0.6",
+    "sass": "^1.26.10"
+  }
+}
