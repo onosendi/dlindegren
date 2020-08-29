@@ -1,13 +1,9 @@
 __pycache__/
-venv/
-*.pyc
 .env
-.DS_Store
 
 # npm
 node_modules/
+dist/
 .cache/
 *.js.map
 *.css.map
-
-static/
