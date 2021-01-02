@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build static/parcel-entry.js --public-url ./ --out-dir static/dist --out-file main",
-    "start": "parcel static/src/js/main.js --public-url ./ --out-dir static/dist --out-file main"
+    "build": "parcel build src/js/main.js --public-url ./ --out-dir public/dist --out-file main",
+    "start": "parcel src/js/main.js --public-url ./ --out-dir public/dist --out-file main"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,6 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
-    "sass": "^1.26.10"
+    "sass": "^1.32.0"
   }
 }

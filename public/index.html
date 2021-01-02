@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,14 +9,14 @@
   <title>dlindegren.com</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono%7CRoboto+Slab&display=swap">
-  <link rel="stylesheet" href="{{ url_for('static', filename='dist/main.css') }}">
+  <link rel="stylesheet" href="dist/main.css">
 </head>
 
 <body>
 
 <div class="container">
   <article>
-    <h1>Daniel Lindegren</h1>
+    <h1 aria-hidden="true">Daniel Lindegren</h1>
     <p>Hello, my name is <em>Daniel Lindegren</em>. I am a full stack web developer currently living in Phoenix, Arizona.</p>
     <ul class="social-links">
       <li><a href="http://github.com/onosendi" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
@@ -24,7 +25,7 @@
   </article>
 </div>
 
-<script src="{{ url_for('static', filename='dist/main.js') }}"></script>
+<script src="dist/main.js"></script>
 
 </body>
 
