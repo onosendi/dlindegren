@@ -1,6 +1,18 @@
 @import 'reset';
-@import 'variables';
-@import 'mixins';
+
+// Variables
+$white: #fff;
+$black: #444;
+$red: #fb4934;
+
+// Mixins
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
 
 html, body {
   height: 100%;
@@ -28,7 +40,7 @@ article {
     visibility: hidden;
     display: none;
   }
-  
+
   p {
     font: 26px/1.5 'Roboto Mono', monospace;
     margin-bottom: 20px;
@@ -42,7 +54,7 @@ article {
     display: flex;
     justify-content: center;
     list-style: none;
-      
+
     li {
       margin: 0 5px;
     }
@@ -61,14 +73,14 @@ article {
       @include prefix(transform, perspective(1px) translateZ(0));
       @include prefix(transition, background 0.15s ease-in);
       width: 30px;
-      
+
       &:hover,
       &:focus,
       &:active {
         background: $red;
         outline: none;
       }
-      
+
       & > .fa {
         @include prefix(transform, translateZ(0));
         @include prefix(transition, transform 0.15s ease-out);
