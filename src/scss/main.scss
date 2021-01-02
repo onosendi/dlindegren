@@ -55,11 +55,11 @@ article {
     justify-content: center;
     list-style: none;
 
-    li {
+    &__item {
       margin: 0 5px;
     }
 
-    a {
+    &__link {
       align-items: center;
       background: $black;
       border-bottom: none;
