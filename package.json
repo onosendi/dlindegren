@@ -2,10 +2,10 @@
   "name": "dlindegren",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
-    "build": "parcel build src/js/main.js --public-url ./ --out-dir public/dist --out-file main",
-    "start": "parcel src/js/main.js --public-url ./ --out-dir public/dist --out-file main"
+    "build": "parcel build src/index.html",
+    "start": "parcel serve src/index.html"
   },
   "repository": {
     "type": "git",
@@ -15,8 +15,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4",
+    "@parcel/optimizer-cssnano": "^2.0.0-nightly.605",
+    "@parcel/optimizer-htmlnano": "^2.0.0-nightly.605",
+    "@parcel/packager-css": "^2.0.0-nightly.605",
+    "@parcel/packager-html": "^2.0.0-nightly.605",
+    "@parcel/transformer-css": "^2.0.0-nightly.605",
+    "@parcel/transformer-html": "^2.0.0-nightly.605",
+    "@parcel/transformer-postcss": "^2.0.0-nightly.605",
+    "@parcel/transformer-posthtml": "^2.0.0-nightly.605",
+    "@parcel/transformer-sass": "^2.0.0-nightly.605",
+    "parcel": "^2.0.0-nightly.603",
     "parcel-plugin-clean-dist": "0.0.6",
+    "postcss": "^8.2.6",
+    "reset-css": "^5.0.1",
     "sass": "^1.32.0"
   }
 }

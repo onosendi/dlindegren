@@ -1,96 +1,145 @@
-@import 'reset';
+@use 'reset-css';
 
-// Variables
-$white: #fff;
-$black: #444;
-$red: #fb4934;
-
-// Mixins
-@mixin prefix($property, $value) {
-  -webkit-#{$property}: #{$value};
-  -moz-#{$property}: #{$value};
-  -ms-#{$property}: #{$value};
-  -o-#{$property}: #{$value};
-  #{$property}: #{$value};
+@mixin max-width {
+  max-width: 750px;
 }
 
-html, body {
+:root {
+  --color-white: #fff;
+  --color-primary-text: #444;
+  --color-primary: tomato;
+}
+
+body,
+html {
   height: 100%;
 }
 
 body {
-  background: url('../img/paper-texture-pattern.jpg');
-  color: $black;
-}
-
-.container {
   align-items: center;
+  background: url('../img/paper-texture-pattern.jpg');
+  color: var(--color-primary-text);
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  font-size: 62.5%;
   justify-content: center;
+  padding: 0 1.5rem;
 }
 
+.intro {
+  @include max-width;
 
-article {
-  max-width: 750px;
-  padding: 0 15px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
   text-align: center;
 
-  h1 {
-    visibility: hidden;
-    display: none;
+  &__name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.5rem;
   }
+}
 
-  p {
-    font: 26px/1.5 'Roboto Mono', monospace;
-    margin-bottom: 20px;
-  }
+.social-links {
+  @include max-width;
 
-  p em {
-    font: 40px/1.5 'Roboto Slab', serif;
-  }
+  display: flex;
 
-  .social-links {
+  &__link {
+    align-items: center;
+    background-color: var(--color-primary-text);
+    border-radius: 50%;
+    color: var(--color-white);
     display: flex;
+    height: 30px;
     justify-content: center;
-    list-style: none;
+    width: 30px;
 
-    &__item {
-      margin: 0 5px;
+    &:not(:last-child) {
+      margin-right: 1rem;
     }
 
-    &__link {
-      align-items: center;
-      background: $black;
-      border-bottom: none;
-      border-radius: 50%;
-      color: $white;
-      display: flex;
-      height: 30px;
-      justify-content: center;
-      margin-top: 20px;
-      text-decoration: none;
-      @include prefix(transform, perspective(1px) translateZ(0));
-      @include prefix(transition, background 0.15s ease-in);
-      width: 30px;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: $red;
-        outline: none;
-      }
-
-      & > .fa {
-        @include prefix(transform, translateZ(0));
-        @include prefix(transition, transform 0.15s ease-out);
-      }
-
-      &:hover > .fa,
-      &:focus > .fa,
-      &:active > .fa {
-        @include prefix(transform, translateY(-3px));
-      }
+    &::before {
+      content: '\f09b';
+      color: tomato;
+      display: inline-block;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-style: normal;
+      font-variant: normal;
+      font-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      z-index: 2;
     }
   }
 }
+
+// .container {
+//   align-items: center;
+//   display: flex;
+//   height: 100%;
+//   background-color: blue;
+//   justify-content: center;
+// }
+
+
+// article {
+//   max-width: 750px;
+//   padding: 0 15px;
+//   text-align: center;
+
+//   p {
+//     font: 26px/1.5 'Roboto Mono', monospace;
+//     margin-bottom: 20px;
+//   }
+
+//   p em {
+//     font: 40px/1.5 'Roboto Slab', serif;
+//   }
+
+// }
+
+// .social-links {
+//   display: flex;
+//   justify-content: center;
+//   list-style: none;
+
+//   &:not(:last-child) {
+//     margin-left: 20px;
+//   }
+
+//   &__link {
+//     align-items: center;
+//     background: $black;
+//     border-bottom: none;
+//     border-radius: 50%;
+//     color: $white;
+//     display: flex;
+//     height: 30px;
+//     justify-content: center;
+//     margin-top: 20px;
+//     text-decoration: none;
+//     @include prefix(transform, perspective(1px) translateZ(0));
+//     @include prefix(transition, background 0.15s ease-in);
+//     width: 30px;
+
+//     &:hover,
+//     &:focus,
+//     &:active {
+//       background: $red;
+//       outline: none;
+//     }
+
+//     & > .fa {
+//       @include prefix(transform, translateZ(0));
+//       @include prefix(transition, transform 0.15s ease-out);
+//     }
+
+//     &:hover > .fa,
+//     &:focus > .fa,
+//     &:active > .fa {
+//       @include prefix(transform, translateY(-3px));
+//     }
+//   }
+// }
