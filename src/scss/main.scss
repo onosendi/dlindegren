@@ -1,13 +1,33 @@
 @use 'reset-css';
 
-@mixin max-width {
-  max-width: 750px;
+:root {
+  --color-primary: tomato;
+  --color-primary-text: #444;
+  --color-white: #fff;
 }
 
-:root {
-  --color-white: #fff;
-  --color-primary-text: #444;
-  --color-primary: tomato;
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/Roboto-Regular-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/RobotoSlab-Regular-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src:
+    url(../fonts/fa-brands-400.woff2) format('woff2'),
+    url(../fonts/fa-brands-400.woff) format('woff');
 }
 
 body,
@@ -23,37 +43,41 @@ body {
   flex-direction: column;
   font-size: 62.5%;
   justify-content: center;
-  padding: 0 1.5rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 750px;
+  padding: 1.5rem;
 }
 
 .intro {
-  @include max-width;
-
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1.5rem;
+  font-family: 'Roboto', monospace;
+  font-size: 2rem;
   line-height: 1.5;
   margin-bottom: 1.5rem;
   text-align: center;
 
   &__name {
     font-family: 'Roboto Slab', serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    line-height: 0;
   }
 }
 
 .social-links {
-  @include max-width;
-
+  justify-content: center;
   display: flex;
 
   &__link {
     align-items: center;
     background-color: var(--color-primary-text);
     border-radius: 50%;
-    color: var(--color-white);
     display: flex;
     height: 30px;
     justify-content: center;
+    transition: background 0.15s ease-in;
     width: 30px;
 
     &:not(:last-child) {
@@ -61,85 +85,38 @@ body {
     }
 
     &::before {
-      content: '\f09b';
-      color: tomato;
-      display: inline-block;
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
+      color: var(--color-white);
+      font-family: 'Font Awesome 5 Brands';
+      font-size: 0.9rem;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
       font-style: normal;
       font-variant: normal;
-      font-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      z-index: 2;
+      font-weight: 400;
+      line-height: 1;
+      text-decoration: none;
+      text-rendering: auto;
+      transition: transform 0.15s ease-out;
+      transform: perspective(0.1rem) translateY(0.1rem);
+    }
+
+    &--github::before {
+      content: '\f09b';
+    }
+
+    &--linkedin::before {
+      content: '\f0e1';
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--color-primary);
+      outline: none;
+
+      &::before {
+        transform: perspective(0.1rem) translateY(-0.03rem);
+      }
     }
   }
 }
-
-// .container {
-//   align-items: center;
-//   display: flex;
-//   height: 100%;
-//   background-color: blue;
-//   justify-content: center;
-// }
-
-
-// article {
-//   max-width: 750px;
-//   padding: 0 15px;
-//   text-align: center;
-
-//   p {
-//     font: 26px/1.5 'Roboto Mono', monospace;
-//     margin-bottom: 20px;
-//   }
-
-//   p em {
-//     font: 40px/1.5 'Roboto Slab', serif;
-//   }
-
-// }
-
-// .social-links {
-//   display: flex;
-//   justify-content: center;
-//   list-style: none;
-
-//   &:not(:last-child) {
-//     margin-left: 20px;
-//   }
-
-//   &__link {
-//     align-items: center;
-//     background: $black;
-//     border-bottom: none;
-//     border-radius: 50%;
-//     color: $white;
-//     display: flex;
-//     height: 30px;
-//     justify-content: center;
-//     margin-top: 20px;
-//     text-decoration: none;
-//     @include prefix(transform, perspective(1px) translateZ(0));
-//     @include prefix(transition, background 0.15s ease-in);
-//     width: 30px;
-
-//     &:hover,
-//     &:focus,
-//     &:active {
-//       background: $red;
-//       outline: none;
-//     }
-
-//     & > .fa {
-//       @include prefix(transform, translateZ(0));
-//       @include prefix(transition, transform 0.15s ease-out);
-//     }
-
-//     &:hover > .fa,
-//     &:focus > .fa,
-//     &:active > .fa {
-//       @include prefix(transform, translateY(-3px));
-//     }
-//   }
-// }
