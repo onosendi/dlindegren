@@ -25,7 +25,6 @@
     "@parcel/transformer-posthtml": "^2.0.0-nightly.605",
     "@parcel/transformer-sass": "^2.0.0-nightly.605",
     "parcel": "^2.0.0-nightly.603",
-    "parcel-plugin-clean-dist": "0.0.6",
     "postcss": "^8.2.6",
     "reset-css": "^5.0.1",
     "sass": "^1.32.0"

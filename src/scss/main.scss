@@ -75,10 +75,11 @@ body {
     background-color: var(--color-primary-text);
     border-radius: 50%;
     display: flex;
-    height: 30px;
+    height: 31px;
     justify-content: center;
+    text-decoration: none;
     transition: background 0.15s ease-in;
-    width: 30px;
+    width: 31px;
 
     &:not(:last-child) {
       margin-right: 1rem;
@@ -94,7 +95,6 @@ body {
       font-variant: normal;
       font-weight: 400;
       line-height: 1;
-      text-decoration: none;
       text-rendering: auto;
       transition: transform 0.15s ease-out;
       transform: perspective(0.1rem) translateY(0.1rem);
