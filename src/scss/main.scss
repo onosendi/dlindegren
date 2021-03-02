@@ -108,15 +108,19 @@ body {
       content: '\f0e1';
     }
 
-    &:active,
-    &:focus,
     &:hover {
       background-color: var(--color-primary);
-      outline: none;
 
       &::before {
         transform: perspective(0.1rem) translateY(-0.03rem);
       }
+    }
+
+    &:focus {
+      box-shadow:
+        0 0 0 2px var(--color-white),
+        0 0 0 5px var(--color-primary);
+      outline: none;
     }
   }
 }
