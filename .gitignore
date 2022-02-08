@@ -2,8 +2,3 @@
 
 # npm
 node_modules/
-dist/
-.cache/
-.parcel-cache/
-*.js.map
-*.css.map
