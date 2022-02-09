@@ -1,6 +1,6 @@
 async function fetch() {
-  return new Promise((resolve: any) => {
-    setTimeout(resolve('blahs :)'), 100);
+  return new Promise((resolve) => {
+    setTimeout(resolve, 100);
   });
 }
 
