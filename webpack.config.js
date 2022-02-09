@@ -1,9 +1,18 @@
+const fs = require('fs');
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isEnvProduction = process.env.NODE_ENV === 'production';
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
+
+function getHtmlPages() {
+  const files = fs.readdirSync('src');
+  return files.map((file) => file.endsWith('.html') && new HtmlPlugin({
+    filename: file,
+    template: `src/${file}`,
+  })).filter(Boolean);
+}
 
 module.exports = {
   devServer: {
@@ -42,14 +51,7 @@ module.exports = {
   },
   plugins: [
     isEnvProduction && new MiniCssExtractPlugin(),
-    new HtmlPlugin({
-      template: 'src/index.html',
-      filename: 'index.html',
-    }),
-    new HtmlPlugin({
-      template: 'src/about.html',
-      filename: 'about.html',
-    }),
+    ...getHtmlPages(),
   ].filter(Boolean),
   resolve: {
     extensions: ['.ts', '.js'],
