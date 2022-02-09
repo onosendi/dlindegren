@@ -1,12 +1,7 @@
-async function fetch() {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 100);
-  });
+function foo(str: string) {
+  return str;
 }
 
-async function foo() {
-  const t = await fetch();
-  console.log(t);
-}
+const t = foo('testing');
 
-foo();
+console.log(t);
