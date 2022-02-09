@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const { NODE_ENV } = process.env;
-const IS_DEVELOPMENT = NODE_ENV === 'development';
+const isEnvProduction = process.env.NODE_ENV === 'production';
+const isEnvDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
   devServer: {
@@ -17,6 +17,7 @@ module.exports = {
     './src/ts/index.ts',
     './src/scss/index.scss',
   ],
+  mode: isEnvProduction ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -27,7 +28,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          IS_DEVELOPMENT ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
@@ -40,7 +41,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new MiniCssExtractPlugin(),
+    isEnvProduction && new MiniCssExtractPlugin(),
     new HtmlPlugin({
       template: 'src/index.html',
       filename: 'index.html',
@@ -49,7 +50,7 @@ module.exports = {
       template: 'src/about.html',
       filename: 'about.html',
     }),
-  ],
+  ].filter(Boolean),
   resolve: {
     extensions: ['.ts', '.js'],
   },
