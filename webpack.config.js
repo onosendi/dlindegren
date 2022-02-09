@@ -4,6 +4,9 @@ module.exports = {
   devServer: {
     compress: true,
     port: 3000,
+    static: {
+      directory: path.resolve(__dirname, 'src'),
+    },
   },
   entry: [
     './src/ts/index.ts',
