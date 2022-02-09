@@ -6,7 +6,8 @@ module.exports = {
     port: 3000,
   },
   entry: [
-    './src/index.ts',
+    './src/ts/index.ts',
+    './src/scss/index.scss',
   ],
   module: {
     rules: [
@@ -15,6 +16,14 @@ module.exports = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss?$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   output: {
@@ -22,6 +31,6 @@ module.exports = {
     filename: 'index.js',
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
 };
