@@ -1,10 +1,14 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "module": "es6",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "outDir": "./dist/",
-    "target": "es5"
-  }
+	"compilerOptions": {
+		"allowJs": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"moduleResolution": "node",
+		"noEmit": true,
+		"strict": true,
+		"target": "esnext"
+	},
+	"include": [
+		"src"
+	]
 }

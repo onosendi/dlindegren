@@ -1,5 +1,3 @@
-function helloWorld() {
+export default function helloWorld() {
   console.log('hello world');
 }
-
-helloWorld();
