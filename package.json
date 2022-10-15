@@ -1,8 +1,4 @@
 {
-  "name": "dlindegren",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.html",
   "scripts": {
     "build": "parcel build --public-url ./ --no-source-maps src/index.html",
     "start": "parcel serve src/index.html"
@@ -11,9 +7,6 @@
     "type": "git",
     "url": "git+https://github.com//onosendi/dlindegren.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@parcel/optimizer-cssnano": "^2.0.0-nightly.605",
     "@parcel/optimizer-htmlnano": "^2.0.0-nightly.605",
